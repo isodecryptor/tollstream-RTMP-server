@@ -10,9 +10,9 @@ apt-get update
 
 apt-get upgrade
 
-apt-get install man wget nginx
+apt-get install nginx
 
-apt-get install git nano libnginx-mod-rtmp wget ufw
+apt-get install libnginx-mod-rtmp ufw
 
 apt-get install sudo
 
