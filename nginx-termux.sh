@@ -11,7 +11,7 @@ termux-wake-lock
 
 termux-setup-storage
 
-cd /data/data/com.termux/files/home
+cd /data/data/com.termux/files/home/tollstream-RTMP-server/
 
 pkg update -y && pkg install curl proot tar -y && curl https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Ubuntu/ubuntu.sh | bash
 
