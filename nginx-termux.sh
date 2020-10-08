@@ -28,5 +28,5 @@ cd /data/data/com.termux/files/home/tollstream-RTMP-server
 chmod +rwx nginx-ubuntu-rtmp2.sh
 
 cp nginx-ubuntu-rtmp2.sh /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/root
-/
+/nginx-ubuntu-rtmp2.sh
 exit
