@@ -27,7 +27,7 @@ apt-get autoremove
 
 chmod +wrx nginx-ubuntu-rtmp2.sh
 
-cp nginx-ubuntu-rtmp2.sh /data/data/com.termux/files/home/ubuntu-fs/home
+cp nginx-ubuntu-rtmp2.sh /data/data/com.termux/files/home/tollstream-RTMP-server/ubuntu-fs/home
 
 ./start-ubuntu.sh
 
