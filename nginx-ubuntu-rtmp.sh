@@ -21,7 +21,10 @@ you may forward the tcp port :1934(tcp port 1934 must be forwarded \n
 in every firewall layer. Do you have the ability to port forward tcp port 1934?\n
 If unsure answer no and the script will attempt to give you a port forwarding solutio \n
 To those behind a firewall."
+read userForwarding
 
+if userForwarding in
+userForwarding = y || Y
 exit
 
 
