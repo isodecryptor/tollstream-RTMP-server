@@ -11,17 +11,13 @@ apt-get update
 
 apt-get upgrade
 
-apt-get install nginx
-
-apt-get install libnginx-mod-rtmp ufw git
-
-apt-get install sudo
+apt-get install libnginx-mod-rtmp ufw git nginx
 
 sudo apt-get autoremove
 
-sudo rm /etc/nginx.conf
+sudo rm /etc/nginx/nginx.conf
 
-mv /root/tollstream-RTMP/nginx.conf /etc/nginx/nginx.conf
+mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 
 exit
 
