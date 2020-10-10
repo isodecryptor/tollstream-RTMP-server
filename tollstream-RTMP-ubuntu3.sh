@@ -8,8 +8,6 @@ apt-get upgrade -y
 apt-get install libnginx-mod-rtmp nginx git -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
-cd $home
-git clone https://github.com/isodecryptor/tollstream-RTMP-server
 mv /tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions
