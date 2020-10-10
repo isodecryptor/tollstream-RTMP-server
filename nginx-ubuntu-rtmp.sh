@@ -9,6 +9,7 @@ apt-get install libnginx-mod-rtmp nginx
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
+echo nginx -t
 exit
 
 
