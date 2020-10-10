@@ -27,5 +27,3 @@ read userForwarding
 #userForwarding = y || Y
 exit
 
-
-
