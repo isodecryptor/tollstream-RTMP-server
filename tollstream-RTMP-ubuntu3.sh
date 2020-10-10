@@ -5,7 +5,7 @@
 #for use with tollstream.com
 sudo apt-get update -y
 apt-get upgrade -y
-apt-get install libnginx-mod-rtmp nginx git -y
+apt-get install libnginx-mod-rtmp nginx -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 mv /tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
