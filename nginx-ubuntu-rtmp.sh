@@ -19,15 +19,9 @@ apt-get install sudo
 
 sudo apt-get autoremove
 
-cd $home
+sudo rm /etc/nginx.conf
 
-git clone https://github.com/isodecryptor/tollstream-RTMP-server
-
-sudo rm /etc/nginx
-
-mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
-
-
+mv /root/tollstream-RTMP/nginx.conf /etc/nginx/nginx.conf
 
 exit
 
