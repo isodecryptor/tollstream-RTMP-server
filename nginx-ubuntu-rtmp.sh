@@ -23,8 +23,8 @@ If unsure answer no and the script will attempt to give you a port forwarding so
 To those behind a firewall."
 read userForwarding
 
-if userForwarding in
-userForwarding = y || Y
+# /if userForwarding in
+#userForwarding = y || Y
 exit
 
 
