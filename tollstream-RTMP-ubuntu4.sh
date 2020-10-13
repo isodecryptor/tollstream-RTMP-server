@@ -23,7 +23,7 @@ while [[ "$answ1" != [yYnN] ]]; do
    echo "Please enter a y for yes or an n for no"
    read answ1
 done
-if [ "$answ1" = "y" ] || [ "$answ1" = "Y" ]; then
+if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    apt install npm
    npm install -g localtunnel
 else
