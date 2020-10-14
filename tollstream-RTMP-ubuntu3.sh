@@ -17,7 +17,7 @@ echo "please answer no and a nat bypass service will be installed."
 echo "This will allow port 1935 to be reached from behind \n"
 echo "Will you be port forwarding tcp 1935 or need /n"
 echo "the local tunneling solution, provided by this script?"
-echo "Please enter a y for yes or an n for no"
+echo "Please enter a y (I will be configuring my own port forwarding) for yes or an n (I want the nat bypass solution) for no"
 read answ1                                            
 echo $answ1
 while [[ "$answ1" != [yYnN] ]]; do
