@@ -7,8 +7,8 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install libnginx-mod-rtmp nginx
 sudo apt-get autoremove -y
-sudo chown $user /etc/nginx.conf
-sudo chmod +w /etc/nginx.conf
+sudo chown $user /etc/nginx/nginx.conf
+sudo chmod +w /etc/nginx/nginx.conf
 sudo rm /etc/nginx/nginx.conf
 mv /$home/$user/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 echo nginx -t
