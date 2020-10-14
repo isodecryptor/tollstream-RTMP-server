@@ -3,10 +3,10 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server
 #for use with tollstream.com
-apt-get update -y
-apt-get upgrade -y
-apt-get install libnginx-mod-rtmp nginx
-apt-get autoremove -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install libnginx-mod-rtmp nginx
+sudo apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 mv /$home/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 echo nginx -t
@@ -24,8 +24,8 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-   apt install npm
-   npm install -g localtunnel
+  sudo apt install npm
+  sudo npm install -g localtunnel
 else
    echo "Skipping local tunnel nat bypass install"
 fi
