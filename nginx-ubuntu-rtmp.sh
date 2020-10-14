@@ -21,9 +21,17 @@ you may forward the tcp port :1934(tcp port 1934 must be forwarded \n
 in every firewall layer. Do you have the ability to port forward tcp port 1934?\n
 If unsure answer no and the script will attempt to give you a port forwarding solutio \n
 To those behind a firewall."
-read userForwarding
-
-# /if userForwarding in
-#userForwarding = y || Y
+read answ1                                            
+echo $answ1
+while [[ "$answ1" != [yYnN] ]]; do
+   echo "Please enter a y for yes or an n for no"
+   read answ1
+done
+if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
+  sudo apt install npm
+  sudo npm install -g localtunnel
+else
+   echo "Skipping local tunnel nat bypass install"
+fi
 exit
 
