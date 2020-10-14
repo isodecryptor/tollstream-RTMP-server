@@ -14,13 +14,13 @@ echo "Your rtmp server is set up. Please answer the questions
 about your streaming software. \n"
 echo "RTMP Servers require that port forwarding is enabled
 on any firewall that the server is behind. Examples are \n
-routers, and operating system. The default port is tcp :1934
-,typically mapped to localhost:1934 or 127.0.0.1:1934. For ease of use \n
+routers, and operating system. The default port is tcp :1935
+,typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,
 if you are a server administrator and have access to all firewalls, 
-you may forward the tcp port :1934(tcp port 1934 must be forwarded \n
-in every firewall layer. Do you have the ability to port forward tcp port 1934?\n
-If unsure answer no and the script will attempt to give you a port forwarding solutio \n
-To those behind a firewall."
+you may forward the tcp port :1934(tcp port 1935 must be forwarded
+in every firewall layer. Do you have the ability to port forward tcp port 1935?
+If unsure answer no and the script will attempt to give you a port forwarding solution
+to those behind a firewall."
 read answ1                                            
 echo $answ1
 while [[ "$answ1" != [yYnN] ]]; do
