@@ -11,7 +11,7 @@ sudo chown $user /etc/nginx/nginx.conf
 sudo chmod +w /etc/nginx/nginx.conf
 sudo rm /etc/nginx/nginx.conf
 mv /$home/$user/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
-echo nginx -t
+nginx -t
 echo "An RTMP server requires that you have port 1935 open. This includes all hardware and software, firwealls \n"
 echo "If you are behind nat firewall and dont have access to all the network administration,\n"
 echo "please answer no and a nat bypass service will be installed."
