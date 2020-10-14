@@ -9,9 +9,8 @@ apt-get install libnginx-mod-rtmp nginx -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
-sudo systemctl stop nginx 
-sudo systemctl start nginx 
-sudo systemctl restart nginx
+/etc/init.d/nginx stop
+/etc/init.d/nginx start
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions
 about your streaming software. \n"
