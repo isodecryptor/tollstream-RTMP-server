@@ -10,7 +10,7 @@ sudo apt-get autoremove -y
 sudo mv nginx.conf /etc/nginx/nginx.conf
 sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx start
-nginx -t
+sudo nginx -t
 echo "An RTMP server requires that you have port 1935 open. This includes all hardware and software, firwealls \n"
 echo "If you are behind nat firewall and dont have access to all the network administration,\n"
 echo "please answer no and a nat bypass service will be installed."
