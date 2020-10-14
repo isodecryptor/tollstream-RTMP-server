@@ -7,6 +7,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install libnginx-mod-rtmp nginx
 sudo apt-get autoremove -y
+cd $home 
 sudo mv nginx.conf /etc/nginx/nginx.conf
 nginx -t
 echo "An RTMP server requires that you have port 1935 open. This includes all hardware and software, firwealls \n"
