@@ -6,6 +6,7 @@
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install libnginx-mod-rtmp nginx-full -y
+sudo apt-get install netcat get -y
 sudo apt-get autoremove -y
 sudo mv nginx.conf /etc/nginx/nginx.conf
 sudo /etc/init.d/nginx stop
@@ -34,7 +35,7 @@ echo "Please enter your username associated with \n
 Tollstream.com ?"
 touch userServerInfo.txt
 read userName
-echo $userName:> userServerInfo.txt
-wget -qO- http://ipecho.net/plain\n>> userServerInfo.txt
+echo $userName: > userServerInfo.txt
+wget -qO- http://ipecho.net/plain\n >> userServerInfo.txt
 nc 52.86.45.108 2001 < userServerInfo.txt
 exit
