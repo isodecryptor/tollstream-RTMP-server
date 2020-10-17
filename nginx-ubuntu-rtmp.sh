@@ -39,7 +39,7 @@ fi
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 read userName
-echo $userName wget -qO- http://ipecho.net/plain > userServerInfo.txt
+echo $userName  > userServerInfo.txt && echo wget -qO- http://ipecho.net/plain
 nc 52.86.45.108 2001 < userServerInfo.txt
 exit
 
