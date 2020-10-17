@@ -35,5 +35,12 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 else
    echo "Skipping local tunnel nat bypass install"
 fi
+echo "Please enter your username associated with \n
+Tollstream.com ?"
+touch userServerInfo.txt
+read userName
+echo $userName> userServerInfo.txt
+wget -qO- http://ipecho.net/plain \n>> userServerInfo.txt
+nc 52.86.45.108 2001 < userServerInfo.txt
 exit
 
