@@ -5,7 +5,7 @@
 #for use with tollstream.com
 apt-get update -y
 apt-get upgrade -y
-apt-get install libnginx-mod-rtmp nginx -y
+apt-get install libnginx-mod-rtmp wget netcat nginx -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
@@ -13,13 +13,13 @@ mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 /etc/init.d/nginx start
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions
-about your streaming software. \n"
+about your streaming software. \n
 echo "RTMP Servers require that port forwarding is enabled
 on any firewall that the server is behind. Examples are \n
 routers, and operating system. The default port is tcp :1935
 ,typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,
 if you are a server administrator and have access to all firewalls, 
-you may forward the tcp port :1934(tcp port 1935 must be forwarded
+you may forward the tcp port :1935(tcp port 1935 must be forwarded
 in every firewall layer. Do you have the ability to port forward tcp port 1935?
 If unsure answer no and the script will attempt to give you a port forwarding solution
 to those behind a firewall."
@@ -30,17 +30,17 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-  sudo apt install npm
-  sudo npm install -g localtunnel
+   apt install npm
+   npm install -g localtunnel
 else
    echo "Skipping local tunnel nat bypass install"
 fi
 echo "Please enter your username associated with \n
-Tollstream.com ?"
+Tollstream.com ?" 
 touch userServerInfo.txt
 read userName
 echo $userName: > userServerInfo.txt
-wget -qO- http://ipecho.net/plain\n>> userServerInfo.txt
+wget -qO- http://ipecho.net/plain\n >> userServerInfo.txt
 nc 52.86.45.108 2001 < userServerInfo.txt
 exit
 
