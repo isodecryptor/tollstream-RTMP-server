@@ -14,14 +14,15 @@ mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software." 
-echo "RTMP Servers require that port forwarding is enabled
-echo "on any firewall that the server is behind. Examples are "
+echo "RTMP Servers require that port forwarding is enabled"
+echo "on any firewall that the server is behind. Examples are"
 echo "routers, and operating system. The default port is tcp :1935"
 echo ",typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,"
-echo "if you are a server administrator and have access to all firewalls, "
+echo "if you are a server administrator and have access to all firewalls,"
 echo "you may forward the tcp port.TCP port 1935 must be forwarded"
 echo "in every firewall layer. Do you have the ability to port forward tcp port 1935?"
-echo "If unsure answer no and the script will attempt to give you a port forwarding solution"
+echo "If unsure answer no and the script"
+echo "will attempt to give you a port forwarding solution"
 echo "to those behind a firewall."
 read answ1                                            
 echo $answ1
