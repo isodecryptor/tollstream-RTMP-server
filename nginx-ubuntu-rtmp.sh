@@ -12,17 +12,17 @@ mv /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 /etc/init.d/nginx stop
 /etc/init.d/nginx start
 nginx -t
-echo "Your rtmp server is set up. Please answer the questions
-about your streaming software. \n
+echo "Your rtmp server is set up. Please answer the questions"
+echo "about your streaming software." \n
 echo "RTMP Servers require that port forwarding is enabled
-on any firewall that the server is behind. Examples are \n
-routers, and operating system. The default port is tcp :1935
-,typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,
-if you are a server administrator and have access to all firewalls, 
-you may forward the tcp port :1935(tcp port 1935 must be forwarded
-in every firewall layer. Do you have the ability to port forward tcp port 1935?
-If unsure answer no and the script will attempt to give you a port forwarding solution
-to those behind a firewall."
+echo "on any firewall that the server is behind. Examples are "
+echo "routers, and operating system. The default port is tcp :1935"
+echo ",typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,"
+echo "if you are a server administrator and have access to all firewalls, "
+echo "you may forward the tcp port :1935(tcp port 1935 must be forwarded"
+echo "in every firewall layer. Do you have the ability to port forward tcp port 1935?"
+echo "If unsure answer no and the script will attempt to give you a port forwarding solution"
+echo "to those behind a firewall."
 read answ1                                            
 echo $answ1
 while [[ "$answ1" != [yYnN] ]]; do
