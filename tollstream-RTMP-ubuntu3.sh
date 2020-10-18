@@ -34,8 +34,10 @@ fi
 echo "Please enter your username associated with \n
 Tollstream.com ?"
 touch userServerInfo.txt
+sudo chmod +w user server info.txt
 read userName
 echo $userName: > userServerInfo.txt
-wget -qO- http://ipecho.net/plain\n >> userServerInfo.txt
-nc 52.86.45.108 2001 < userServerInfo.txt
+wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
+openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
+nc 52.86.45.108 2001 < userServerInfoCipher.dat
 exit
