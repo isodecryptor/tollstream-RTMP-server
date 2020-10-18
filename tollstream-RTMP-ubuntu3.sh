@@ -5,6 +5,7 @@
 #for use with tollstream.com
 sudo apt-get update -y
 sudo apt-get upgrade -y
+sudo apt-get dist-upgrade
 sudo apt-get install libnginx-mod-rtmp nginx-full -y
 sudo apt-get install netcat get -y
 sudo apt-get autoremove -y
