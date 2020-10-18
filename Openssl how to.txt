@@ -1,0 +1,11 @@
+(#!/bin/bash
+> #how to create a private key
+> openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pem
+> #be sure to create a password
+> #how to create a public key from tge private key to share to those wanting ti encrypt
+> openssl pkey -in public-key.pem -pubin -text
+> #how to encrypt a file with the public key
+> openssl rsautl -encrypt -inkey public_key.pem -pubin -in encrypt.txt -out encrypt.dat
+> #where public_key.pem is the name of your public key
+> #how to decrypt it with private key
+> openssl rsautl -decrypt -inkey private_key.pem -in encrypt.dat -out new_encrypt.txt
