@@ -29,6 +29,7 @@ done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
   sudo apt install npm
   sudo npm install -g localtunnel
+  lt --port 1935
 else
    echo "Skipping local tunnel nat bypass install"
 fi
