@@ -40,8 +40,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Please enter your authkey located at "
    echo "https://dashboard.ngrok.com/auth/your-authtoken"
-   echo "for usage with tollstream. Tollstream encrypts this with an aes 256 bit public key,"
-   echo "before transmitting it to tollstream.com for use with e-commerce assitance. "
+   echo "into the terminal."
    read ngrokAuthkey
    ./ngrok authtoken $ngrokAuthkey
      
