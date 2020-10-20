@@ -5,7 +5,7 @@
 #for use with tollstream.com
 apt-get update -y
 apt-get upgrade -y
-apt-get install libnginx-mod-rtmp wget netcat nginx -y
+apt-get install libnginx-mod-rtmp wget netcat nginx nano unzip -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 cp /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
@@ -36,8 +36,15 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-   apt install npm
-   npm install -g localtunnel
+   unzip /root/tollstream-RTMP-server/ngrok-stable-linux-amd64.zip
+   echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
+   echo "Please enter your authkey located at "
+   echo "https://dashboard.ngrok.com/auth/your-authtoken"
+   echo "for usage with tollstream. Tollstream encrypts this with an aes 256 bit public key,"
+   echo "before transmitting it to tollstream.com for use with e-commerce assitance. "
+   read ngrokAuthkey
+   ./ngrok authtoken $ngrokAuthkey
+     
 else
    echo "Skipping local tunnel nat bypass install"
 fi
