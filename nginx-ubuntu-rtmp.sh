@@ -1,7 +1,7 @@
 #Author:Donald Bilton
 #
 #Date: 10/07/2020
-#PURPOSE: To install an nginx rtmp server 
+#PURPOSE: To install an nginx rtmp server on Android
 #for use with tollstream.com
 apt-get update -y
 apt-get upgrade -y
