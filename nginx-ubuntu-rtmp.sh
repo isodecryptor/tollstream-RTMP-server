@@ -47,7 +47,6 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
    ./ngrok authtoken $ngrokAuthkey
-     
 else
    echo "Skipping local tunnel nat bypass install"
 fi
