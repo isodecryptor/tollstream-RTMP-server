@@ -47,7 +47,7 @@ Tollstream.com ?"
 touch userServerInfo.txt
 read userName
 echo $userName: > userServerInfo.txt
-wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
-openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
-nc 52.86.45.108 2001 < userServerInfoCipher.dat
+sudo wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
+sudo openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
+sudo nc 52.86.45.108 2001 < userServerInfoCipher.dat
 exit
