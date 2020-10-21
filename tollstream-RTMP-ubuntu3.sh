@@ -3,16 +3,19 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server
 #for use with tollstream.com
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade
-sudo apt-get install libnginx-mod-rtmp nginx-full -y
-sudo apt-get install netcat get -y
-sudo apt-get autoremove -y
-sudo cp nginx.conf /etc/nginx/nginx.conf
-sudo /etc/init.d/nginx stop
-sudo /etc/init.d/nginx start
-sudo nginx -t
+apt-get update -y
+apt-get upgrade -y
+apt-get dist-upgrade
+apt-get install libnginx-mod-rtmp nginx-full -y
+apt-get install netcat get -y
+apt-get autoremove -y
+cp nginx.conf /etc/nginx/nginx.conf
+chmod +x /usr/local/bin/rtmpServer.sh
+chmod u+rwx /etc/systemd/system/rtmpServer.service
+systemctl enable rtmpServer
+/etc/init.d/nginx stop
+/etc/init.d/nginx start
+nginx -t
 echo "An RTMP server requires that you have port 1935 open. This includes all hardware and software, firwealls \n"
 echo "If you are behind nat firewall and dont have access to all the network administration,\n"
 echo "please answer no and a nat bypass service will be installed."
@@ -27,8 +30,8 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-   sudo unzip /root/tollstream-RTMP-server/ngrok-stable-linux-amd64.zip
-   sudo chmod +x /root/tollstream-RTMP-server/ngrok
+   unzip /root/tollstream-RTMP-server/ngrok-stable-linux-amd64.zip
+   chmod +x /root/tollstream-RTMP-server/ngrok
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
    echo "nat bypass solutions with our automated install scripts."
@@ -38,7 +41,8 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "https://dashboard.ngrok.com/auth/your-authtoken"
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
-   sudo ./ngrok authtoken $ngrokAuthkey
+   ./ngrok authtoken $ngrokAuthkey
+   
 else
    echo "Skipping local tunnel nat bypass install"
 fi
@@ -47,7 +51,7 @@ Tollstream.com ?"
 touch userServerInfo.txt
 read userName
 echo $userName: > userServerInfo.txt
-sudo wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
-sudo openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
-sudo nc 52.86.45.108 2001 < userServerInfoCipher.dat
+wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
+openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
+nc 52.86.45.108 2001 < userServerInfoCipher.dat
 exit
