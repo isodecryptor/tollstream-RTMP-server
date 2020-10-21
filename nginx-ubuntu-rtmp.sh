@@ -11,7 +11,7 @@ rm /etc/nginx/nginx.conf
 cp /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
 cp /root/tollstream-RTMP-server/rtmpServer.service /etc/systemd/system/rtmpServer.service
 cp /root/tollstream-RTMP-server/rtmpServer.sh /usr/local/bin/rtmpServer.sh
-chmod +x /usr/local/bin/rtmpServer.sh
+chmod +wx /usr/local/bin/rtmpServer.sh
 chmod u+rwx /etc/systemd/system/rtmpServer.service
 systemctl enable rtmpServer
 /etc/init.d/nginx stop
