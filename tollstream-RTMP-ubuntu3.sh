@@ -9,7 +9,7 @@ sudo apt-get dist-upgrade
 sudo apt-get install libnginx-mod-rtmp nginx-full -y
 sudo apt-get install netcat get -y
 sudo apt-get autoremove -y
-sudo mv nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx.conf /etc/nginx/nginx.conf
 sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx start
 sudo nginx -t
