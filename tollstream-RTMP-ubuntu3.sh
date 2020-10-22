@@ -44,7 +44,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
    num=$(echo -n "$ngrokAuthkey" | wc -c)
-   while [ $num != 49 ]
+   while [ $num != 49 ];
    do
       echo "Please douboe check that your are entering the"
       echo "Authkey for ngrok located at top of"
@@ -53,9 +53,11 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
     read ngrokAuthkey
     echo $num
     done
+    ./ngrok authtoken $ngrokAuthkey
+fi    
     else
         echo "Skipping local tunnel nat bypass install"
-    done
+    do
 #The same if statement about y or n can be analyzed
 #down here to decide if ./ngrok tcp 1935 needs to be executed
 #or an else that allows command flow to ask
@@ -68,4 +70,5 @@ echo $userName: > userServerInfo.txt
 wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
+
 exit
