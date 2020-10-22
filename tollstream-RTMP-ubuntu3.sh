@@ -6,8 +6,8 @@
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade
-apt-get install libnginx-mod-rtmp nginx-full -y
-apt-get install netcat get -y
+apt-get install libnginx-mod-rtmp nginx-full unzip -y
+apt-get install netcat net-tools -y
 apt-get autoremove -y
 cp nginx.conf /etc/nginx/nginx.conf
 chmod +x /usr/local/bin/rtmpServer.sh
