@@ -56,6 +56,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
     else
         echo "Skipping local tunnel nat bypass install"
     done
+#The same if statement about y or n can be analyzed
+#down here to decide if ./ngrok tcp 1935 needs to be executed
+#or an else that allows command flow to ask
+#for userName and fetches public ip for storage.
 echo "Please enter your username associated with \n
 Tollstream.com ?"
 touch userServerInfo.txt
