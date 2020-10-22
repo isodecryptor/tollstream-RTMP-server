@@ -57,6 +57,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    done
 echo $num
    ./ngrok authtoken $ngrokAuthkey
+#The same if statement about y or n can be analyzed
+#down here to decide if ./ngrok tcp 1935 needs to be executed
+#or an else that allows command flow to ask
+fi
 else
    echo "Skipping local tunnel nat bypass install"
 fi
