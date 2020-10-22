@@ -43,13 +43,19 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "https://dashboard.ngrok.com/auth/your-authtoken"
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
-   while ngrokAuthkey
-   ./ngrok authtoken $ngrokAuthkey
-   ./ngrok tcp 1935
-   
-else
-   echo "Skipping local tunnel nat bypass install"
-fi
+   num=$(echo -n "$ngrokAuthkey" | wc -c)
+   while [ $num != 49 ]
+   do
+      echo "Please douboe check that your are entering the"
+      echo "Authkey for ngrok located at top of"
+      echo "https://dashboard.ngrok.com/auth/your-authtoken"
+      echo "page"
+    read ngrokAuthkey
+    echo $num
+    done
+    else
+        echo "Skipping local tunnel nat bypass install"
+    done
 echo "Please enter your username associated with \n
 Tollstream.com ?"
 touch userServerInfo.txt
