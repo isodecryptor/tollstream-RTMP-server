@@ -57,7 +57,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 fi    
     else
         echo "Skipping local tunnel nat bypass install"
-    do
+    fi
 #The same if statement about y or n can be analyzed
 #down here to decide if ./ngrok tcp 1935 needs to be executed
 #or an else that allows command flow to ask
@@ -70,5 +70,4 @@ echo $userName: > userServerInfo.txt
 wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
-     done
 exit
