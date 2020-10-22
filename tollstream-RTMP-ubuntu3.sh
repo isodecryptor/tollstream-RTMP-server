@@ -30,8 +30,10 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
+   cd $home
+   cd tollstream-RTMP-server
    unzip ngrok-stable-linux-amd64.zip
-   chmod +x tollstream-RTMP-server/ngrok
+   chmod +x ngrok
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
    echo "nat bypass solutions with our automated install scripts."
@@ -41,6 +43,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "https://dashboard.ngrok.com/auth/your-authtoken"
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
+   while ngrokAuthkey
    ./ngrok authtoken $ngrokAuthkey
    ./ngrok tcp 1935
    
