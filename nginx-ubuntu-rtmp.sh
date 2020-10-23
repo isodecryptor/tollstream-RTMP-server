@@ -65,6 +65,10 @@ echo "Please enter your username associated with Tollstream.com."
 touch userServerInfo.txt
 read userName
 echo $userName : >> userServerInfo.txt
+#purpose:to send ngroks url to tollstream
+if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url'
+else
 wget -qO- http://ipecho.net/plain >> userServerInfo.txt
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
