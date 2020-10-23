@@ -3,6 +3,9 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server
 #for use with tollstream.com
+cat tollstream.banner
+echo "Please press enter"
+read
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade
