@@ -65,9 +65,15 @@ read userName
 echo $userName: > userServerInfo.txt
 if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
+   ./ngrok tcp 1935
 else
    wget -qO- http://ipecho.net/plain >> userServerInfo.txt
+   echo "Your public ip address is: "
+   wget -qO- http://ipecho.net/plain
+   echo "Your rtmp server url should be:"
+   echo -n "rtmp://"; wget -qO- http://ipecho.net/plain; echo -n ":1935/larix/test"
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
+
 exit
