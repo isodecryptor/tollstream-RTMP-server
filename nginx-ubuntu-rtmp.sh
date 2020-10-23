@@ -6,7 +6,7 @@
 apt-get update -y
 apt-get upgrade -y
 apt-get install libnginx-mod-rtmp wget netcat nginx nano unzip -y
-apt-get install net-tools -y
+apt-get install net-tools jq -y
 apt-get autoremove -y
 rm /etc/nginx/nginx.conf
 cp /root/tollstream-RTMP-server/nginx.conf /etc/nginx/nginx.conf
