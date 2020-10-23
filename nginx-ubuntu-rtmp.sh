@@ -58,7 +58,6 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    done
 echo $num
    ./ngrok authtoken $ngrokAuthkey
-fi
 else
    echo "Skipping local tunnel nat bypass install"
 fi
