@@ -44,7 +44,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "into the terminal for usage with tollstream's e-commerce services."
    read ngrokAuthkey
    num=$(echo -n "$ngrokAuthkey" | wc -c)
-   while [ $num != 49 ];
+   while [ $num -ne 49 ];
    do
       echo "Please douboe check that your are entering the"
       echo "Authkey for ngrok located at top of"
