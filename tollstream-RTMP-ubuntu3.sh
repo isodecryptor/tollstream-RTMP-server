@@ -57,16 +57,17 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
     else
         echo "Skipping local tunnel nat bypass install"
 fi
-#The same if statement about y or n can be analyzed
-#down here to decide if ./ngrok tcp 1935 needs to be executed
-#or an else that allows command flow to ask
-#for userName and fetches public ip for storage.
+
 echo "Please enter your username associated with \n
 Tollstream.com ?"
 touch userServerInfo.txt
 read userName
 echo $userName: > userServerInfo.txt
-wget -qO- http://ipecho.net/plain \n >> userServerInfo.txt
+if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+   curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
+else
+   wget -qO- http://ipecho.net/plain >> userServerInfo.txt
+fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 exit
