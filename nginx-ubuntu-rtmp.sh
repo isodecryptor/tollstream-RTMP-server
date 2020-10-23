@@ -3,9 +3,8 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server on Android
 #for use with tollstream.com
-echo Welcome to Tollstream.com's auto install scripts
 cat tollstream.banner
-echo Please press enter
+echo "Please press enter"
 read
 apt-get update -y
 apt-get upgrade -y
