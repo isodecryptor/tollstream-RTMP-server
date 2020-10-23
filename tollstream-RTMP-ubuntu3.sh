@@ -70,8 +70,11 @@ else
    wget -qO- http://ipecho.net/plain >> userServerInfo.txt
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
-   echo "Your rtmp server url should be:"
-   echo -n "rtmp://"; wget -qO- http://ipecho.net/plain; echo -n ":1935/larix/test"
+echo "Your rtmp address should be:"; echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
+echo -n ":1935/larix/stringofchoice"
+(
+echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
+echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
