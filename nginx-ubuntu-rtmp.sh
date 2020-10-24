@@ -74,8 +74,8 @@ echo $userName : > userServerInfo.txt
 if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
 #modify this to send commands between screens using the
 #how to send commands between screens in main fork.
-   screen -d -m -S nginx
-   screen -S nginx -p 0 -X stuff "./nginx tcp 1935^M"
+   screen -d -m -S ngrok
+   screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
 else
    echo "Your public ip address is: "
@@ -89,5 +89,8 @@ echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
+if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+screen -r ngrok
+fi
 exit
 
