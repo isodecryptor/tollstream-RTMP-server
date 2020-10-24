@@ -73,7 +73,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #between screens in main fork
    screen -d -m -S ngrok
    screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
+   sleep 4
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
+   echo -n /larix/test
 else
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
