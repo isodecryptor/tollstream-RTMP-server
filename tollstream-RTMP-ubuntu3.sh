@@ -72,7 +72,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
 # mdofiy this to use screens in the how to send commands
 #between screens in main fork
    screen -d -m -S nginx
-   screen -S 27795.nginx -p 0 -X stuff "./nginx tcp 1935^M"
+   screen -S nginx -p 0 -X stuff "./nginx tcp 1935^M"
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
 else
    echo "Your public ip address is: "
