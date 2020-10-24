@@ -5,7 +5,7 @@
 #for use with tollstream.com
 cd $home
 cd tollstream-RTMP-server
-cat tollstream.banner
+cat Tollstream.banner
 echo "Please press enter"
 read
 apt-get update -y
