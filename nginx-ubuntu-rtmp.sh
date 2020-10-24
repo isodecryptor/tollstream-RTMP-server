@@ -72,6 +72,8 @@ read userName
 echo $userName : > userServerInfo.txt
 #purpose:to send ngroks url to tollstream
 if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+#modify this to send commands between screens using the
+#how to send commands between screens in main fork.
    ./ngrok tcp 1935 > /dev/null &
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
 else
