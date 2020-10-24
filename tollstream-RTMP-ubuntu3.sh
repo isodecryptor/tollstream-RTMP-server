@@ -55,10 +55,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "Authkey for ngrok located at top of"
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
       echo "page"
-    read ngrokAuthkey
-    echo $num
+      read ngrokAuthkey
+      echo $num
     done
-    ./ngrok authtoken $ngrokAuthkey    
+      ./ngrok authtoken $ngrokAuthkey    
     else
         echo "Skipping local tunnel nat bypass install"
 fi
@@ -71,21 +71,21 @@ echo $userName: > userServerInfo.txt
 if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
 # mdofiy this to use screens in the how to send commands
 #between screens in main fork
-   screen -d -m -S nginx
-   screen -S nginx -p 0 -X stuff "./nginx tcp 1935^M"
+   screen -d -m -S ngrok
+   screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
    curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
 else
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
-echo "Your rtmp address should be:"; echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
-echo -n ":1935/larix/stringofchoice"
-(
-echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
-echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
+   echo "Your rtmp address should be:"; echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
+   echo -n ":1935/larix/stringofchoice"
+   (
+   echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
+   echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
-screen -r nginx
+   screen -r ngrok
 fi
 exit
