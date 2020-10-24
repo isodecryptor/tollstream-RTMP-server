@@ -68,7 +68,7 @@ Tollstream.com ?"
 touch userServerInfo.txt
 read userName
 echo $userName: > userServerInfo.txt
-if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 # mdofiy this to use screens in the how to send commands
 #between screens in main fork
    screen -d -m -S ngrok
@@ -85,7 +85,7 @@ else
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
-if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -r ngrok
 fi
 exit
