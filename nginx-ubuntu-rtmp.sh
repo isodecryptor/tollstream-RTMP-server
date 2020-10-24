@@ -90,7 +90,7 @@ echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
-if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
+   if [ "$answ1" = "n" ] || [ "$answ1" = 'N" ]; then
 screen -r ngrok
 fi
 exit
