@@ -56,11 +56,11 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    num=$(echo -n "$ngrokAuthkey" | wc -c)
    while [ $num -ne 49 ]
    do
-   echo "Please douboe check that your are entering the"
-   echo "Authkey for ngrok located at top of"
-   echo "https://dashboard.ngrok.com/auth/your-authtoken"
-   echo "page"
-   read ngrokAuthkey
+      echo "Please douboe check that your are entering the"
+      echo "Authkey for ngrok located at top of"
+      echo "https://dashboard.ngrok.com/auth/your-authtoken"
+      echo "page"
+      read ngrokAuthkey
    done
 echo $num
    ./ngrok authtoken $ngrokAuthkey
@@ -70,7 +70,6 @@ fi
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 read userName
-echo $userName : > userServerInfo.txt
 #purpose:to send ngroks url to tollstream
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #modify this to send commands between screens using the
@@ -78,29 +77,38 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -d -m -S ngrok
    screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
    sleep 4
-   curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url' >> userServerInfo.txt
-   echo -n /larix/test >> userServerInfo.txt
+   (
+   echo -n $userName :
+   echo  -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url') 
+   echo  /larix/test) >> userServerInfo.txt
 else
+   reset
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
-echo "Your rtmp address should be:"; echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
-echo -n ":1935/larix/stringofchoice"
+   echo
+   echo "Your rtmp address should be:"
+   echo
+   echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
+   echo  :1935/larix/stringofchoice
 (
-echo -n "rtmp://"; wget -qO- http://ipecho.net/plain \n
-echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
-
+echo -n $userName :
+echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
+echo :1935/larix/stringofchoice) >> userServerInfo.txt
+echo
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-   curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url'
-   echo -n ":1935/larix/test"
-   echo /n
+   reset
+   echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url')
+   echo  :1935/larix/test
+   echo
    echo "rtmp://127.0.0.1:1935/larix/test"
-   echo \n
-   echo "rtmp://"
-   hostname -I
-   echo -n ":1935/larix/test"
+   echo
+   echo -n rtmp://$(hostname -I) 
+   echo 
+   echo -n :1935/larix/test
+   echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
    echo "A explanation of when to use which url will he explained in the "
@@ -110,4 +118,5 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -r ngrok
 fi
 exit
+
 
