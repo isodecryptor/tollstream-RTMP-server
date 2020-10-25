@@ -1,3 +1,4 @@
+#!/bin/bash
 #Author:Donald Bilton
 #
 #Date: 10/07/2020
@@ -93,7 +94,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo /n
    echo "rtmp://127.0.0.1:1935/larix/test"
    echo \n
-   echo "rtmp://"; hostname -I; echo -n ":1935/larix/test"
+   echo "rtmp://"
+   hostname -I
+   echo -n ":1935/larix/test"
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
    echo "A explanation of when to use which url will he explained in the "
