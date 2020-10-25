@@ -77,8 +77,8 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -d -m -S ngrok
    screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
    sleep 4
+   echo -n $userName : > userServerInfo.txt
    (
-   echo -n $userName :
    echo  -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url') 
    echo  /larix/test) >> userServerInfo.txt
 else
@@ -94,8 +94,8 @@ else
    echo
    echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
    echo  :1935/larix/stringofchoice
+   echo -n $userName : > userServerInfo.txt
 (
-echo -n $userName :
 echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
 echo :1935/larix/stringofchoice) >> userServerInfo.txt
 echo
@@ -104,13 +104,18 @@ openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    reset
-   echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url')
-   echo  :1935/larix/test
+   echo Your public rtmp server address:
    echo
+   echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url')
+   echo  /larix/test
+   echo
+   echo 
+   echo Your localhost rtmp server address:
    echo "rtmp://127.0.0.1:1935/larix/test"
    echo
-   echo -n rtmp://$(hostname -I) 
    echo 
+   echo Your private rtmp server address is :
+   echo -n rtmp://$(hostname -I) 
    echo  :1935/larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
