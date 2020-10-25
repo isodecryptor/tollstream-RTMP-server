@@ -89,7 +89,7 @@ fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-   echo curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url'
+   curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url'
    echo -n ":1935/larix/test"
    echo /n
    echo "rtmp://127.0.0.1:1935/larix/test"
