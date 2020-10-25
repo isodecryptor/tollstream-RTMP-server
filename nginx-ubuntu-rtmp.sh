@@ -91,8 +91,20 @@ echo -n ":1935/larix/stringofchoice") >> userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
-   if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
-screen -r ngrok
+if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
+   echo curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].pub>
+   echo -n ":1935/larix/test"
+   echo /n
+   echo "rtmp://127.0.0.1:1935/larix/test"
+   echo \n
+   echo "rtmp://"; hostname -I; echo -n ":1935/larix/test"
+   echo "Please make note of the rtmp urls that will be used in your system"
+   echo "configuration"
+   echo "A explanation of when to use which url will he explained in the "
+   echo "how to host rtmp servers forum at Tollstream.com"
+   echo "Please press enter when done making note of the urls"
+   read
+   screen -r ngrok
 fi
 exit
 
