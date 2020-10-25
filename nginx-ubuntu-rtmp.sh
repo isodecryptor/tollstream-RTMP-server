@@ -43,7 +43,12 @@ while [[ "$answ1" != [yYnN] ]]; do
    read answ1
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
+   if [[ -f "ngrok" ]];
+then
+    echo "This file exists on your filesystem."
+else
    unzip /root/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
+fi
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
    echo "nat bypass solutions with our automated install scripts."
@@ -61,6 +66,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
       echo "page"
       read ngrokAuthkey
+      num=$(echo -n "$ngrokAuthkey" | wc -c)
    done
 echo $num
    ./ngrok authtoken $ngrokAuthkey
@@ -125,6 +131,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please press enter when done making note of the urls"
    read
    screen -r ngrok
+   screen -wipe
 fi
 exit
 
