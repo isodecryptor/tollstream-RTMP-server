@@ -84,7 +84,11 @@ else
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
    echo
-   echo "Your rtmp address should be:"
+   echo your localhost rtmp address is rtmp://127.0.0.1:1935/larix/test
+   echo
+   echo Your private rtmp address is : rtmp://$(hostname -I):1935/larix/test
+   echo
+   echo "Your public rtmp address should be:"
    echo
    echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
    echo  :1935/larix/stringofchoice
@@ -105,7 +109,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n rtmp://$(hostname -I) 
    echo 
-   echo -n :1935/larix/test
+   echo  :1935/larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
