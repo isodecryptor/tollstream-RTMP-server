@@ -19,8 +19,8 @@ nginx
 cat Tollstream.banner
 echo Please press enter
 read
-nginx -t
 nginx
+nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software." 
 echo "RTMP Servers require that port forwarding is enabled"
