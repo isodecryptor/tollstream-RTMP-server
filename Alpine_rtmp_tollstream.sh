@@ -7,17 +7,20 @@
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
-cd /home
-apk add nginx nginx-mod-rtmp jq screen
+apk add nginx nginx-mod-rtmp jq screen bash openssl
+cd /root/tollstream-RTMP-server
+if [[ -f /run/nginx ]]; then
+echo /run/nginx was created,already
+else
 mkdir /run/nginx
-git clone https://github.com/isodecryptor/tollstream-RTMP-server
-cd tollstream-RTMP-server
+fi
 cp nginx.conf /etc/nginx/nginx.conf
 nginx
 cat Tollstream.banner
 echo Please press enter
 read
 nginx -t
+nginx
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software." 
 echo "RTMP Servers require that port forwarding is enabled"
@@ -40,8 +43,8 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    if [[ -f "ngrok" ]];
 then
     echo "This file exists on your filesystem."
-else
-   unzip ngrok-stable-linux-arm.zip
+    else
+    unzip /root/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
 fi
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
@@ -88,7 +91,7 @@ else
    echo
    echo your localhost rtmp address is rtmp://127.0.0.1:1935/larix/test
    echo
-   echo Your private rtmp address is : rtmp://$(hostname -I):1935/larix/test
+   echo Your private rtmp address is : rtmp://$(hostname -i):1935/larix/test
    echo
    echo "Your public rtmp address should be:"
    echo
@@ -115,7 +118,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo 
    echo Your private rtmp server address is :
-   echo -n rtmp://$(hostname -I) 
+   echo -n rtmp://$(hostname -i) 
    echo  :1935/larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
