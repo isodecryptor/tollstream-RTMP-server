@@ -8,7 +8,6 @@
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
 apk add nginx nginx-mod-rtmp jq screen bash openssl
-cd /root/tollstream-RTMP-server
 if [[ -f /run/nginx ]]; then
 echo /run/nginx was created,already
 else
@@ -44,7 +43,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 then
     echo "This file exists on your filesystem."
     else
-    unzip /root/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
+    unzip ngrok-stable-linux-arm.zip
 fi
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
