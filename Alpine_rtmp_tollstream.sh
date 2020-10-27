@@ -43,7 +43,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 then
     echo "This file exists on your filesystem."
     else
-    unzip ngrok-stable-linux-arm.zip
+    unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
 fi
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
    echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
