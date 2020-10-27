@@ -128,6 +128,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please press enter when done making note of the urls"
    read
    screen -r ngrok
-   screen -wipe
+   
 fi
+screen -wipe
 exit
