@@ -8,7 +8,6 @@
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
-cd /root/tollstream-RTMP-server
 if [[ -f /run/nginx ]]; then
 echo /run/nginx was created,already
 else
