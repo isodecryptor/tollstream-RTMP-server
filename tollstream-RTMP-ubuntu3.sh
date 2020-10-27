@@ -113,7 +113,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo 
    echo Your localhost rtmp server address:
-   echo "rtmp://127.0.0.1:1935/larix/test"
+   echo "rtmp://127.0.0.1/larix/test"
    echo
    echo 
    echo Your private rtmp server address is :
