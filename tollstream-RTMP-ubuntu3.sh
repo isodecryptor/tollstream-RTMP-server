@@ -10,7 +10,7 @@ read
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade
-apt-get install libnginx-mod-rtmp nginx-full unzip -y
+apt-get install libnginx-mod-rtmp nginx-full unzip curl openssl -y
 apt-get install netcat net-tools jq screen -y
 apt-get autoremove -y
 cp nginx.conf /etc/nginx/nginx.conf
