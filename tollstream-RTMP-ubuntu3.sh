@@ -4,8 +4,6 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server
 #for use with tollstream.com
-cd $home
-cd tollstream-RTMP-server
 cat Tollstream.banner
 echo "Please press enter"
 read
