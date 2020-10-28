@@ -4,6 +4,14 @@
 #Date: 10/07/2020
 #PURPOSE: To install an nginx rtmp server
 #for use with tollstream.com
+#Define functions here
+killd () {
+    for session in $(screen -ls | grep -o '[0-9]\{4\}')
+    do
+        screen -S "${session}" -X quit;
+    done
+}
+#Main()
 cat Tollstream.banner
 echo "Please press enter"
 read
@@ -13,6 +21,7 @@ apt-get dist-upgrade
 apt-get install libnginx-mod-rtmp nginx-full unzip curl openssl -y
 apt-get install netcat net-tools jq screen -y
 apt-get autoremove -y
+killd
 cp nginx.conf /etc/nginx/nginx.conf
 chmod +x /usr/local/bin/rtmpServer.sh
 chmod u+rwx /etc/systemd/system/rtmpServer.service
@@ -127,6 +136,6 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please press enter when done making note of the urls"
    read
    screen -r ngrok
-   screen -wipe
 fi
+killd
 exit
