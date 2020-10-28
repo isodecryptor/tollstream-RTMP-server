@@ -9,17 +9,16 @@
 #Would like to run this inside of busy box for outdated androids
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 if [[ -f /run/nginx ]]; then
-echo /run/nginx was created,already
+   echo /run/nginx was created,already
 else
-mkdir /run/nginx
+   mkdir /run/nginx
 fi
 cp nginx.conf /etc/nginx/nginx.conf
+nginx -s stop
 nginx
 cat Tollstream.banner
 echo Please press enter
 read
-nginx
-nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software." 
 echo "RTMP Servers require that port forwarding is enabled"
