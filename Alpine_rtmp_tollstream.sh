@@ -7,7 +7,16 @@
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
+#Define functions here
+killd () {
+    for session in $(screen -ls | grep -o '[0-9]\{4\}')
+    do
+        screen -S "${session}" -X quit;
+    done
+}
+#Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
+killd
 if [[ -f /run/nginx ]]; then
 echo /run/nginx was created,already
 else
@@ -130,5 +139,5 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -r ngrok
    
 fi
-screen -wipe
+killd
 exit
