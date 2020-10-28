@@ -14,8 +14,6 @@ killd () {
         screen -S "${session}" -X quit;
     done
 }
-
-exit
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 #Main
 killd 
