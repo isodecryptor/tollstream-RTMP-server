@@ -7,17 +7,21 @@
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
+
+#define variables here
+
 #Define functions here
 killd () {
     for session in $(screen -ls | grep -o '[0-9]\{4\}')
     do
         screen -S "${session}" -X quit;
-    done
+        screen -wipe
+     done
 }
 #Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 killd
-if [[ -f /run/nginx ]]; then
+if [[ -f "/run/nginx" ]]; then
 echo /run/nginx was created,already
 else
 mkdir /run/nginx
@@ -54,27 +58,32 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    else
       unzip /root/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
    fi
-   echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
-   echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
-   echo "nat bypass solutions with our automated install scripts."
-   echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
-   echo "about plans and licensing details."
-   echo "Please enter your authkey located at "
-   echo "https://dashboard.ngrok.com/auth/your-authtoken"
-   echo "into the terminal for usage with tollstream's e-commerce services."
-   read ngrokAuthkey
-   num=$(echo -n "$ngrokAuthkey" | wc -c)
-   while [ $num -gt 50 ] && [ $num -lt 45];
-   do
-      echo "Please douboe check that your are entering the"
-      echo "Authkey for ngrok located at top of"
+   str=$(cat /root/.ngrok2/ngrok.yml)
+      if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
+         echo "You have already saved your authkey"
+      else
+      echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
+      echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
+      echo "nat bypass solutions with our automated install scripts."
+      echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
+      echo "about plans and licensing details."
+      echo "Please enter your authkey located at "
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
-      echo "page"
+      echo "into the terminal for usage with tollstream's e-commerce services."
       read ngrokAuthkey
       num=$(echo -n "$ngrokAuthkey" | wc -c)
-   done
-echo $num
-   ./ngrok authtoken $ngrokAuthkey
+      while [ $num -gt 50 ] && [ $num -lt 45];
+      do
+         echo "Please douboe check that your are entering the"
+         echo "Authkey for ngrok located at top of"
+         echo "https://dashboard.ngrok.com/auth/your-authtoken"
+         echo "page"
+         read ngrokAuthkey
+         num=$(echo -n "$ngrokAuthkey" | wc -c)
+      done
+     echo $num
+     ./ngrok authtoken $ngrokAuthkey
+     fi
 else
    echo "Skipping local tunnel nat bypass install"
 fi
