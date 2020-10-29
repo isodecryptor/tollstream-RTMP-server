@@ -12,13 +12,14 @@ killd () {
     for session in $(screen -ls | grep -o '[0-9]\{4\}')
     do
         screen -S "${session}" -X quit;
-    done
+        screen -wipe
+     done
 }
 #Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
-killd 
-if [[ -f /run/nginx ]]; then
-   echo /run/nginx was created,already
+killd
+if [[ -f "/run/nginx" ]]; then
+echo /run/nginx was created,already
 else
    mkdir /run/nginx
 fi
@@ -48,67 +49,77 @@ while [[ "$answ1" != [yYnN] ]]; do
 done
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    if [[ -f "ngrok" ]];
-then
-    echo "This file exists on your filesystem."
-    else
-    unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
-fi
-   echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
-   echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
-   echo "nat bypass solutions with our automated install scripts."
-   echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
-   echo "about plans and licensing details."
-   echo "Please enter your authkey located at "
-   echo "https://dashboard.ngrok.com/auth/your-authtoken"
-   echo "into the terminal for usage with tollstream's e-commerce services."
-   read ngrokAuthkey
-   num=$(echo -n "$ngrokAuthkey" | wc -c)
-   while [ $num -gt 50 ] && [ $num -lt 45 ];
-   do
-      echo "Please douboe check that your are entering the"
-      echo "Authkey for ngrok located at top of"
+   then
+      echo "This file exists on your filesystem."
+   else
+      unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
+   fi
+   str=$(cat /root/.ngrok2/ngrok.yml)
+      if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
+         echo "You have already saved your authkey"
+      else
+      echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
+      echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
+      echo "nat bypass solutions with our automated install scripts."
+      echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
+      echo "about plans and licensing details."
+      echo "Please enter your authkey located at "
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
-      echo "page"
+      echo "into the terminal for usage with tollstream's e-commerce services."
       read ngrokAuthkey
       num=$(echo -n "$ngrokAuthkey" | wc -c)
-   done
-echo $num
-   ./ngrok authtoken $ngrokAuthkey
+      while [ $num -gt 50 ] && [ $num -lt 45];
+      do
+         echo "Please double check that your are entering the"
+         echo "Authkey for ngrok located at top of"
+         echo "https://dashboard.ngrok.com/auth/your-authtoken"
+         echo "page"
+         read ngrokAuthkey
+         num=$(echo -n "$ngrokAuthkey" | wc -c)
+      done
+      echo $num
+      ./ngrok authtoken $ngrokAuthkey
+      fi
 else
    echo "Skipping local tunnel nat bypass install"
 fi
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
-read userName
+if [[ -f "userNameSave" ]]; then
+   echo "Your screen for tollstream is:" $(cat userNameSave)
+   echo Press enter
+   read
+else
+   read userName
+   touch userNameSave
+   echo -n $userName > userNameSave
+fi
 #purpose:to send ngroks url to tollstream
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #modify this to send commands between screens using the
 #how to send commands between screens in main fork.
    screen -d -m -S ngrok
    screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
-   sleep 4
-   echo -n $userName : > userServerInfo.txt
+   sleep 4 
    (
-   echo  -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url') 
-   echo  /larix/test) >> userServerInfo.txt
+   cat userNameSave; echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url') 
+   echo  /larix/test) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
    echo
-   echo your localhost rtmp address is rtmp://127.0.0.1:1935/larix/test
+   echo your localhost rtmp address is rtmp://127.0.0.1/larix/test
    echo
-   echo Your private rtmp address is : rtmp://$(hostname -i):1935/larix/test
+   echo Your private rtmp address is : rtmp://$(hostname -i )/larix/test
    echo
    echo "Your public rtmp address should be:"
    echo
    echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
    echo  :1935/larix/stringofchoice
-   echo -n $userName : > userServerInfo.txt
-(
-echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
-echo :1935/larix/stringofchoice) >> userServerInfo.txt
-echo
+
+(cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
+echo :1935/larix/stringofchoice) > userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
@@ -121,12 +132,12 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo 
    echo Your localhost rtmp server address:
-   echo "rtmp://127.0.0.1:1935/larix/test"
+   echo "rtmp://127.0.0.1/larix/test"
    echo
    echo 
    echo Your private rtmp server address is :
    echo -n rtmp://$(hostname -i) 
-   echo  :1935/larix/test
+   echo  /larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
@@ -135,6 +146,6 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please press enter when done making note of the urls"
    read
    screen -r ngrok
-  fi
+fi
 killd
 exit
