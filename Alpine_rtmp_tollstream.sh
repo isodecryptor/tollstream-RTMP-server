@@ -26,7 +26,8 @@ else git clone -b Alpine \
       (echo 'Proot-distro login alpine'
       echo 'screen -dms startup' 
       echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"') > bash.bashrc 
+      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
+      echo 'screen -r') > bash.bashrc 
 fi      
 
       
