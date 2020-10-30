@@ -19,8 +19,7 @@ fi
       https://github.com/isodecryptor/tollstream-RTMP-server
 else git clone -b Alpine \
       https://github.com/isodecryptor/tollstream-RTMP-server
-      cd /home/tollstream-RTMP-server; 
-      cd tollstream-RTMP-server
+      cd /home/tollstream-RTMP-server
       ./Alpine_rtmp_tollstream.sh) > Tollstreamstartup.sh
       cd /data/data/com.termux/files/user/etc
       (echo 'Proot-distro login alpine'
