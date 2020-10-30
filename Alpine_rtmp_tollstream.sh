@@ -22,16 +22,13 @@ else git clone -b Alpine \
       cd /home/tollstream-RTMP-server; 
       cd tollstream-RTMP-server
       ./Alpine_rtmp_tollstream.sh) > Tollstreamstartup.sh
+      cd /data/data/com.termux/files/user/etc
       (echo 'Proot-distro login alpine'
       echo 'screen -dms startup' 
       echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"' ) 
+      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"') > bash.bashrc 
 fi      
-cd data/data/com.termux/files/usr/etc
-echo 'Proot-distro login alpine'
-echo 'screen -dms startup' 
-echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
+
       
       
 
