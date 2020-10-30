@@ -27,7 +27,7 @@ else (git clone -b Alpine \
       echo 'screen -dms startup' 
       echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
       echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
-      
+fi      
       
 
 #define variables here
