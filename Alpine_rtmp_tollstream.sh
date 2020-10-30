@@ -8,6 +8,28 @@
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
 
+#startup script here
+if [ -f "$Tollstreamstartup.sh" ]; then
+   ./Tollstreamstartup.sh
+else
+   (touch Tollstreamstartup.sh
+   chmod +x Tollstreamstartup.sh
+  fi
+if [ -d "$tollstream-RTMP-server"]; then git pull -b Alpine \
+      https://github.com/isodecryptor/tollstream-RTMP-server
+else (git clone -b Alpine \
+      https://github.com/isodecryptor/tollstream-RTMP-server
+     cd /home/tollstream-RTMP-server; 
+      cd tollstream-RTMP-server
+      ./Alpine_rtmp_tollstream.sh ) > Tollstreamstartup.sh 
+      cd data/data/com.termux/files/usr/etc
+      echo 'Proot-distro login alpine'
+      echo 'screen -dms startup' 
+      echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
+      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
+      
+      
+
 #define variables here
 
 #Define functions here
