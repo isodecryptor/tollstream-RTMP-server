@@ -14,20 +14,25 @@ if [ -f "$Tollstreamstartup.sh" ]; then
 else
    (touch Tollstreamstartup.sh
    chmod +x Tollstreamstartup.sh
-  fi
-if [ -d "$tollstream-RTMP-server"]; then git pull -b Alpine \
+fi
+(if [ -d "$tollstream-RTMP-server"]; then git pull -b Alpine \
       https://github.com/isodecryptor/tollstream-RTMP-server
-else (git clone -b Alpine \
+else git clone -b Alpine \
       https://github.com/isodecryptor/tollstream-RTMP-server
-     cd /home/tollstream-RTMP-server; 
+      cd /home/tollstream-RTMP-server; 
       cd tollstream-RTMP-server
-      ./Alpine_rtmp_tollstream.sh ) > Tollstreamstartup.sh 
-      cd data/data/com.termux/files/usr/etc
-      echo 'Proot-distro login alpine'
+      ./Alpine_rtmp_tollstream.sh) > Tollstreamstartup.sh
+      (echo 'Proot-distro login alpine'
       echo 'screen -dms startup' 
       echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
+      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"' ) 
 fi      
+cd data/data/com.termux/files/usr/etc
+echo 'Proot-distro login alpine'
+echo 'screen -dms startup' 
+echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
+echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup"'
+      
       
 
 #define variables here
