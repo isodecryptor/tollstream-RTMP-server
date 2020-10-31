@@ -1,8 +1,8 @@
 #!/bin/bash
-#Author:Donald Bolton
+#Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
 #an rtmp server using nginx for use with tollstream.com
-#this install has been tested on android. Size for install
+#this install has been tested on android. Size for ll
 #is 100MB after install. This is 1/6th the size of the install
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
@@ -12,26 +12,21 @@
 if [ -f "$Tollstreamstartup.sh" ]; then
    ./Tollstreamstartup.sh
 else
-   (touch Tollstreamstartup.sh
+   touch Tollstreamstartup.sh
    chmod +x Tollstreamstartup.sh
+   echo "if [ -d '$tollstream-RTMP-server']; then git pull -b Alpine \" \
+          "https://github.com/isodecryptor/tollstream-RTMP-server"\
+          "else git clone -b Alpine \"\
+          "https://github.com/isodecryptor/tollstream-RTMP-server"\
+          "cd /home/tollstream-RTMP-server"\
+          "./Alpine_rtmp_tollstream.sh"\
+          "fi" > Tollstreamstartup.sh
+      echo "Proot-distro login alpine"\
+     "screen -dms startup"\
+     'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'\
+     'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'\
+     "screen -r" >> /data/data/com.termux/files/user/etc/bash.bashrc
 fi
-(if [ -d "$tollstream-RTMP-server"]; then git pull -b Alpine \
-      https://github.com/isodecryptor/tollstream-RTMP-server
-else git clone -b Alpine \
-      https://github.com/isodecryptor/tollstream-RTMP-server
-      cd /home/tollstream-RTMP-server
-      ./Alpine_rtmp_tollstream.sh) > Tollstreamstartup.sh
-      cd /data/data/com.termux/files/user/etc
-      (echo 'Proot-distro login alpine'
-      echo 'screen -dms startup' 
-      echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-      echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
-      echo 'screen -r') > bash.bashrc 
-fi      
-
-      
-      
-
 #define variables here
 
 #Define functions here
@@ -46,9 +41,9 @@ killd () {
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 killd
 if [[ -f "/run/nginx" ]]; then
-echo /run/nginx was created,already
+   echo "/run/nginx was created,already"
 else
-mkdir /run/nginx
+   mkdir /run/nginx
 fi
 cp nginx.conf /etc/nginx/nginx.conf
 cat Tollstream.banner
@@ -58,8 +53,8 @@ nginx -s stop
 nginx
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
-echo "about your streaming software." 
-echo "RTMP Servers require that port forwarding is enabled"
+echo "about your streaming software."
+echo "RTMP Servers require that port florwarding is enabled"
 echo "on any firewall that the server is behind. Examples are"
 echo "routers, and operating system. The default port is tcp :1935"
 echo ",typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,"
@@ -69,7 +64,7 @@ echo "in every firewall layer. Do you have the ability to port forward tcp port 
 echo "If unsure answer no and the script"
 echo "will attempt to give you a port forwarding solution"
 echo "to those behind a firewall."
-read answ1                                            
+read answ1
 echo $answ1
 while [[ "$answ1" != [yYnN] ]]; do
    echo "Please enter a y for yes or an n for no"
@@ -93,7 +88,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "about plans and licensing details."
       echo "Please enter your authkey located at "
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
-      echo "into the terminal for usage with tollstream's e-commerce services."
+      echo "into the terminal for usage with tollstreams e-commerce services."
       read ngrokAuthkey
       num=$(echo -n "$ngrokAuthkey" | wc -c)
       while [ $num -gt 50 ] && [ $num -lt 45];
@@ -114,7 +109,7 @@ fi
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
-   echo "Your screen for tollstream is:" $(cat userNameSave)
+   echo "Your screen for tollstream is:"$(cat userNameSave)
    echo Press enter
    read
 else
@@ -158,13 +153,13 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url')
    echo  /larix/test
    echo
-   echo 
+   echo
    echo Your localhost rtmp server address:
    echo "rtmp://127.0.0.1/larix/test"
    echo
-   echo 
+   echo
    echo Your private rtmp server address is :
-   echo -n rtmp://$(hostname -i) 
+   echo -n rtmp://$(hostname -i)
    echo  /larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
