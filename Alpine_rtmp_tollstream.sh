@@ -75,7 +75,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    then
       echo "This file exists on your filesystem."
    else
-      unzip /root/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
+      unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
    fi
    str=$(cat /root/.ngrok2/ngrok.yml)
       if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
