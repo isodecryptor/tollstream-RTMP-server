@@ -33,3 +33,7 @@ events {
 worker_connectiins 204800;
    multi_accept on;
 }
+
+When /run/nginx/nginx.pid is not located, nginx runs. W
+If issues arise, delete the folder /run/nginx . The system runs
+When it does not record it's pid /run/nginx. Good enough!
