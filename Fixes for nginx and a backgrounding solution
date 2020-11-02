@@ -1,0 +1,35 @@
+Nginx on ish does not work by default and a work-around
+Has been created to allow nginx and nginx-rtmp-mod to work.
+This fix seems to work, as my streamer is sending code. :D
+Here are the fixes. Please implement these into any code using nginx
+And ish as a terminal emulator in ios.
+
+
+#To allow backgrounding in ish for ios. This must be added to scripts
+#to allow backgrounding. This uses the geo exploit concept to
+#overcome no backgrounding policy for ios. For a server, this is
+# a perfect workaround. Must be include in bash shell script
+************
+
+cat /dev/location > /dev/null &.
+
+*************^add to bash shell script
+
+
+#also nginx.conf needs to be modified to work with ISH in ios
+
+The most important lines are 
+
+Add at top
+**************
+
+worker_processes 1;
+daemon off;
+master_process off;
+ **************
+And find events {} and add
+
+events {
+worker_connectiins 204800;
+   multi_accept on;
+}
