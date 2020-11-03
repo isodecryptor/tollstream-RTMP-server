@@ -16,6 +16,9 @@ killd () {
      done
 }
 #Main
+#Allow ISH to be backgrounded to allow multiple apps to run while
+#ISH is running in the background with nginx as the rtmp server
+cat /dev/location > /dev/NULL &.
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 killd
 if [[ -f "/run/nginx" ]]; then
