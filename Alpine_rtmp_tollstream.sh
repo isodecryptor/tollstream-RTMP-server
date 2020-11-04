@@ -30,7 +30,7 @@ else
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi"
-    echo.   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
+    echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
     touch /data/data/com.termux/files/home/prestart.sh
