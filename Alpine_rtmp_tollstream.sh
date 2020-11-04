@@ -9,11 +9,11 @@
 #Would like to run this inside of busy box for outdated androids
 
 #startup script here
-if [ -f "$Tollstreamstartup.sh" ]; then
+if [ -f "$/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    ./Tollstreamstartup.sh
 else
-   touch Tollstreamstartup.sh
-   chmod +x Tollstreamstartup.sh
+   touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
+   chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo  "if [ -d '$tollstream-RTMP-server']; then" 
     echo      "git pull -b Alpine " \
               "https://github.com/isodecryptor/tollstream-RTMP-server"
@@ -22,11 +22,12 @@ else
     echo      "cd /home/tollstream-RTMP-server"
     echo      "./Alpine_rtmp_tollstream.sh"\
     echo      "fi" ) > Tollstreamstartup.sh
-    (echo "screen -d -m -S startup"
+    ( echo "screen -d -m -S startup"
     echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
-    echo "screen -r" ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
+    echo "screen -r" 
+    ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
 
@@ -135,7 +136,7 @@ else
    echo
    echo your localhost rtmp address is rtmp://127.0.0.1/larix/test
    echo
-   echo Your private rtmp address is : rtmp://$(hostname -i )/larix/test
+   echo Your private rtmp address is : rtmp://$(hostname -i ):1935/larix/test
    echo
    echo "Your public rtmp address should be:"
    echo
@@ -160,7 +161,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo
    echo Your private rtmp server address is :
-   echo -n rtmp://$(hostname -i)
+   echo -n rtmp://$(hostname -i):1935
    echo  /larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
