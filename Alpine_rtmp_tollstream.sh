@@ -14,7 +14,7 @@ if [ -f "$/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
-   ( echo  "if [ -d '$tollstream-RTMP-server']; then" 
+   ( echo  'if [ -d "$/home/tollstream-RTMP-server"]; then' 
     echo      "git pull -b Alpine " \
               "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo      "else git clone -b Alpine "\
