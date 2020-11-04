@@ -40,7 +40,7 @@ else
        run1=$run1 + 1
     else
        break
-    fi
+    done
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
