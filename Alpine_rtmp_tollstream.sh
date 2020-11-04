@@ -22,7 +22,7 @@ else
     echo      "cd /home/tollstream-RTMP-server"
     echo      "./Alpine_rtmp_tollstream.sh"\
     echo      "fi" ) > Tollstreamstartup.sh
-    ( echo "Proot-distro login alpine"
+    ( echo "proot-distro login alpine"
     echo "screen -dms startup"
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
