@@ -9,7 +9,7 @@
 #Would like to run this inside of busy box for outdated androids
 
 #startup script here
-if [ -f "$/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
+if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    echo "Welcome Back! :D"
    echo "Press any key to continue"
    read
@@ -17,7 +17,7 @@ else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo "#!/bin/bash"
-    echo  'if [ -d "$/home/tollstream-RTMP-server"]; then' 
+    echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
     echo   "   cd /home"
     echo   "   git pull origin  Alpine" \
            "https://github.com/isodecryptor/tollstream-RTMP-server"
