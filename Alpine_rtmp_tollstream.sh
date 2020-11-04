@@ -37,9 +37,9 @@ else
           echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
           echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
           echo "screen -r startup"  
-          echo "let run1=run1 + 1"
+          echo "let run1=$(($run1 + 1))"
     echo "else"
-    echo "break"
+          echo "break"
     echo "done"
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
