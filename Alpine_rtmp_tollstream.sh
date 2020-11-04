@@ -33,7 +33,7 @@ else
     echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
-    echo "screen -r" 
+    echo "screen -r startup" 
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
