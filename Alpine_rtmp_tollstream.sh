@@ -10,7 +10,9 @@
 
 #startup script here
 if [ -f "$/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
-   ./Tollstreamstartup.sh
+   echo "Welcome Back! :D"
+   echo "Press any key to continue"
+   read
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
