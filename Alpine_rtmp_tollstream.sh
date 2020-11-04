@@ -16,13 +16,15 @@ else
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo  'if [ -d "$/home/tollstream-RTMP-server"]; then' 
     echo   "cd /home"
-    echo      "git pull -b Alpine " \
-              "https://github.com/isodecryptor/tollstream-RTMP-server"
-    echo      "else git clone -b Alpine "\
-              "https://github.com/isodecryptor/tollstream-RTMP-server"
-    echo      "cd /home/tollstream-RTMP-server"
-    echo      "./Alpine_rtmp_tollstream.sh"\
-    echo      "fi" ) > Tollstreamstartup.sh
+    echo   "git pull -b Alpine " \
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "else"
+    echo   "cd /home "
+    echo   "git clone -b Alpine "\
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "cd /home/tollstream-RTMP-server"
+    echo   "./Alpine_rtmp_tollstream.sh"\
+    echo   "fi" ) > Tollstreamstartup.sh
     ( echo "screen -d -m -S startup"
     echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
