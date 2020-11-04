@@ -36,13 +36,12 @@ else
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' 
     echo "screen -r startup"   
-    ) > prestart.sh
+    ) > /home/prestart.sh
     ( 
     echo "bash"
     
-          ./prestart.sh
-   echo "touch /home/prestart.sh"
-    echo "chmod +x /home/prestart.sh"  ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
+    echo "./home/prestart.sh"
+    ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
 
