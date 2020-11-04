@@ -29,18 +29,20 @@ else
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
+    touch /home/prestart.sh"
+    chmod +x /home/prestart.sh"
+    (echo "screen -d -m -S startup"'
+    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
+    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
+    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' 
+    echo "screen -r startup"   
+    ) > prestart.sh
     ( 
     echo "bash"
-    echo "touch /home/prestart.sh"
-    echo "chmod +x /home/prestart.sh"
-    echo '(echo "screen -d -m -S startup"'
-    echo "  echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' "
-    echo "  echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' "
-    echo "  echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' "
-    echo '  echo "screen -r startup" '  
-          ) > prestart.sh
+    
           ./prestart.sh
-    ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
+   echo "touch /home/prestart.sh"
+    echo "chmod +x /home/prestart.sh"  ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
 
