@@ -29,15 +29,19 @@ else
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
+    touch /home/startTollstream.sh
+    chmod +x /home/startTollstream.sh
     ( 
-    echo "for (( c=0; c<=1; c++ ))"
-    echo "do"  
-          echo "screen -d -m -S startup"
+    echo "bash"
+    echo "touch prestart.sh"
+    echo "chmod +x prestart.sh"
+         (echo "screen -d -m -S startup"
           echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
           echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
           echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
           echo "screen -r startup"  
-          echo "let run1=run1 + 1"
+          ) > prestart.sh
+          ./prestart.sh
     echo "done"
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
