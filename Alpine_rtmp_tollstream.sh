@@ -30,17 +30,17 @@ else
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     ( 
-    run1=1
-    while [ $run -eq 1 ] ; do
-       echo "screen -d -m -S startup"
-       echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
-       echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
-       echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
-       echo "screen -r startup"  
-       run1=$run1 + 1
-    else
-       break
-    done
+    echo "run1=1"
+    echo" while [ $run -eq 1 ] ; do"
+          echo "screen -d -m -S startup"
+          echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
+          echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"'
+          echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"'
+          echo "screen -r startup"  
+          echo" let run1=run1 + 1"
+    echo "else"
+    echo "break"
+    echo" done"
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
