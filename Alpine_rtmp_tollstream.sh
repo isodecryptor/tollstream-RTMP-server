@@ -36,12 +36,12 @@ else
     touch /data/data/com.termux/files/home/prestart.sh
     chmod +x /data/data/com.termux/files/home/prestart.sh
     ( echo "#!/bin/bash"
-    echo "screen -d -m -S startup"
-    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
-    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
-    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M"' 
-    echo "screen -r startup"
-    echo "exit"  
+   # echo "screen -d -m -S startup"
+  #  echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
+  #  echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
+  #  echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M"' 
+   # echo "screen -r startup"
+   # echo "exit"  
     ) > /data/data/com.termux/files/home/prestart.sh
     ( 
     
