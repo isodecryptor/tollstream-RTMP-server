@@ -10,7 +10,7 @@
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
-   echo "Welcome Back! :D"
+   echo "Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
    read
 else
@@ -43,7 +43,7 @@ else
     ) > /data/data/com.termux/files/home/prestart.sh
     ( 
     
-    echo "bash /data/data/com.termux/files/home/prestart.sh"
+    echo "/data/data/com.termux/files/home/prestart.sh"
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
