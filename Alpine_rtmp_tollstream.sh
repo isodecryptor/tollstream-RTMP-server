@@ -34,10 +34,10 @@ else
     echo "touch /home/prestart.sh"
     echo "chmod +x /home/prestart.sh"
     echo '(echo "screen -d -m -S startup"'
-    echo"  echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' "
-    echo"  echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' "
-    echo"  echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' "
-    echo'  echo "screen -r startup" '  
+    echo "  echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' "
+    echo "  echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' "
+    echo "  echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' "
+    echo '  echo "screen -r startup" '  
           ) > prestart.sh
           ./prestart.sh
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
