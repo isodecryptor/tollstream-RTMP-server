@@ -33,16 +33,16 @@ else
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
     touch /data/data/com.termux/files/usr/etc/prestart.sh"
     chmod +x /data/data/com.termux/files/usr/etc/prestart.sh"
-    (echo "screen -d -m -S startup"
+    ( echo "#!/bin/bash"
+    echo "screen -d -m -S startup"
     echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup^M"' 
     echo "screen -r startup"   
-    ) > /data/data/com.termux/files/usr/etc/prestart.sh
+    ) > /data/data/com.termux/files/usr/prestart.sh
     ( 
-    echo "bash"
     
-    echo "data/data/com.termux/files/usr/etc/prestart.sh"
+    echo "data/data/com.termux/files/usr/prestart.sh"
     ) >> /data/data/com.termux/files/usr/etc/bash.bashrc
 fi
 #define variables here
