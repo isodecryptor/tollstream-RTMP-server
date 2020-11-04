@@ -18,14 +18,14 @@ else
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo  'if [ -d "$/home/tollstream-RTMP-server"]; then' 
     echo   "   cd /home"
-    echo   "   git pull -b Alpine " \
-           "   https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "   git pull -b Alpine --single-branch" \
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "else"
     echo   "   cd /home "
-    echo   "   git clone -b Alpine "\
-           "   https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "   git clone -b Alpine --single-branch"\
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi" ) > Tollstreamstartup.sh
