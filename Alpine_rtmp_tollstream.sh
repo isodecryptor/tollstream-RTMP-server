@@ -30,7 +30,7 @@ else
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     ( 
-    echo "for (( c=0; c<=1; c++ ))
+    echo "for (( c=0; c<=1; c++ ))"
     echo "do"  
           echo "screen -d -m -S startup"
           echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"'
