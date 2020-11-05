@@ -1,5 +1,5 @@
 #!/bin/bash
-#Author:Donald Bolton
+#Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
 #an rtmp server using nginx for use with tollstream.com
 #this install has been tested on android. Size for install
