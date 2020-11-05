@@ -96,6 +96,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    then
       echo "This file exists on your filesystem."
    else
+      wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
       unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
    fi
    str=$(cat /root/.ngrok2/ngrok.yml)
