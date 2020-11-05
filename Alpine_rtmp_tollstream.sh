@@ -19,7 +19,7 @@ else
    ( echo "#!/bin/bash"
     echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
     echo   "   cd /home"
-    echo   "   git pull origin  Iphone \
+    echo   "   git pull origin  Iphone" \
            "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
