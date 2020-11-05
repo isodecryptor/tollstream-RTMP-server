@@ -40,7 +40,7 @@ else
     echo "exit"  
     ) > /home/prestart.sh
     ( 
-    
+    echo "#!/bin/bash
     echo "/home/prestart.sh"
     ) >> /etc/profile
 fi
