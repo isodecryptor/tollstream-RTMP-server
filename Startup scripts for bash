@@ -10,4 +10,5 @@ Bash.bashrc, a recursive initiate loop occurs because these scripts run
 Aany time a bash shell is launched rather spawned shell from the parent or not. 
 This not work for anything other than Simple echos or any other commands that you expect
 To be launched any time a new bash shell is called or spawns
-.profile is only called once during reboot. 
+.profile is only called once during reboot. Watch out for that fork bomb when calling bash 
+Commands inside bashrc. It will fork bomb your system. 
