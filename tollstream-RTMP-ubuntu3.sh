@@ -52,6 +52,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 then
     echo "This file exists on your filesystem."
 else
+   wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
    unzip ngrok-stable-linux-amd64.zip
 fi
    echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
