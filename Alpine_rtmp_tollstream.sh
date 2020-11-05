@@ -7,7 +7,50 @@
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
 #Would like to run this inside of busy box for outdated androids
-#Define functions here. 
+
+#startup script here
+if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
+   echo "Welcome Back! 😀😀😀🥳🤗"
+   echo "Press any key to continue"
+   read
+else
+   touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
+   chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
+   ( echo "#!/bin/bash"
+    echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
+    echo   "   cd /home"
+    echo   "   git pull origin  Iphone \
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "   cd /home/tollstream-RTMP-server"
+    echo   "   ./Alpine_rtmp_tollstream.sh"
+    echo   "else"
+    echo   "   cd /home "
+    echo   "   git clone -b Iphone --single-branch"\
+           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "   cd /home/tollstream-RTMP-server"
+    echo   "   ./Alpine_rtmp_tollstream.sh"
+    echo   "fi"
+    echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
+    #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
+    #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
+    touch /home/prestart.sh
+    chmod +x /home/prestart.sh
+    ( echo "#!/bin/bash"
+    echo "screen -d -m -S startup"
+    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
+    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
+    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M"' 
+    echo "screen -r startup"
+    echo "exit"  
+    ) > /home/prestart.sh
+    ( 
+    
+    echo /home/prestart.sh"
+    ) >> /etc/profile
+fi
+#define variables here
+
+#Define functions here
 killd () {
     for session in $(screen -ls | grep -o '[0-9]\{4\}')
     do
@@ -90,7 +133,7 @@ fi
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
-   echo "Your screen for tollstream is:" $(cat userNameSave)
+   echo "Your screen-name for tollstream is:"$(cat userNameSave)
    echo Press enter
    read
 else
@@ -115,7 +158,7 @@ else
    echo
    echo your localhost rtmp address is rtmp://127.0.0.1/larix/test
    echo
-   echo Your private rtmp address is : rtmp://$(hostname -i )/larix/test
+   echo Your private rtmp address is : rtmp://$(hostname -i ):1935/larix/test
    echo
    echo "Your public rtmp address should be:"
    echo
@@ -140,7 +183,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo 
    echo Your private rtmp server address is :
-   echo -n rtmp://$(hostname -i) 
+   echo -n rtmp://$(hostname -i):1935
    echo  /larix/test
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
