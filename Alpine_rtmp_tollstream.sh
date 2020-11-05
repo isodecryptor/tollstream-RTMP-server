@@ -45,7 +45,7 @@ else
     ) > /home/prestart.sh
     ( 
     
-    echo /home/prestart.sh
+    echo "/home/prestart.sh"
     ) >> /etc/profile
 fi
 #define variables here
