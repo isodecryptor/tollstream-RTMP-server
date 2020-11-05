@@ -1,0 +1,13 @@
+Bash start up scripts made easy. So there are several files that are responsible
+For start up scripts. These scripts were located at /data/data/com.termux/files/usr/etc
+In termux. This directory included bash.bashrc and profile. bash.bashrc
+Checks profile for startup scripts that run only once. They do not run recursively, regardless if new
+Bash shells are spawned. Child shell processes are spawned in many cases, such as calling #!/bin/bash in bash 
+Shell scripts or using tools such as screen. Put your bash script directory in profile in /data/data/com.termux/files/usr/etc/profile
+bash.bashrc calls profile to execute its contents, once on startup. No matter how many bash
+Shell spawn form the startup scripts added in profile. If added directly to
+Bash.bashrc, a recursive initiate loop occurs because these scripts run
+Aany time a bash shell is launched rather spawned shell from the parent or not. 
+This not work for anything other than Simple echos or any other commands that you expect
+To be launched any time a new bash shell is called or spawns
+.profile is only called once during reboot. 
