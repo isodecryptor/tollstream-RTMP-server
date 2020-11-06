@@ -126,13 +126,14 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 else
    echo "Skipping local tunnel nat bypass install"
 fi
-echo "Please enter your username associated with Tollstream.com." 
-touch userServerInfo.txt
+
 if [[ -f "userNameSave" ]]; then
    echo "Your screen-name for tollstream is:"$(cat userNameSave)
    echo Press enter
    read
 else
+   echo "Please enter your username associated with Tollstream.com." 
+   touch userServerInfo.txt
    read userName
    touch userNameSave
    echo -n $userName > userNameSave
