@@ -57,7 +57,6 @@ fi
 
 #Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
-killd
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
