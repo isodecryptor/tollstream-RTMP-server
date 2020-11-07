@@ -38,6 +38,7 @@ else
     chmod +x /home/prestart.sh
     ( echo "#!/bin/bash"
     echo "/home/tollstream-RTMP-server/Tollstreamstartup.sh"
+    echo "exit"
     ) > /home/prestart.sh
     ( 
     echo "#!/bin/bash"
