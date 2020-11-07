@@ -67,6 +67,7 @@ else
    mkdir /run/nginx
 fi
 cp nginx.conf /etc/nginx/nginx.conf
+reset
 cat Tollstream.banner
 echo Please press enter
 read
@@ -96,6 +97,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    then
       echo "This file exists on your filesystem."
    else
+      reset
       wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
       unzip /home/tollstream-RTMP-server/ngrok-stable-linux-arm.zip
    fi
@@ -103,6 +105,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
          echo "You have already saved your authkey"
       else
+      reset
       echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
       echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
       echo "nat bypass solutions with our automated install scripts."
@@ -115,6 +118,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       num=$(echo -n "$ngrokAuthkey" | wc -c)
       while [ $num -gt 50 ] && [ $num -lt 45];
       do
+         reset
          echo "Please double check that your are entering the"
          echo "Authkey for ngrok located at top of"
          echo "https://dashboard.ngrok.com/auth/your-authtoken"
@@ -128,6 +132,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 else
    echo "Skipping local tunnel nat bypass install"
 fi
+reset
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
