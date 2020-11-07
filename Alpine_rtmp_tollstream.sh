@@ -50,7 +50,6 @@ else
     ) > /data/data/com.termux/files/home/prestart.sh
     (
     echo "/data/data/com.termux/files/home/prestart.sh"
-    echo "exit"
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
 #define variables here
