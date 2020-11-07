@@ -66,7 +66,7 @@ reset
 cat Tollstream.banner
 echo Please press enter
 read
-nginx -s stop
+nginx -S stop
 nginx
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
