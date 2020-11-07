@@ -1,5 +1,5 @@
 #!/bin/bash
-cd Tollstream_animated_banner
+cd /home/tollstream-RTMP-server/Tollstream_animated_banner
 reset
 cat banner1 
 sleep .5
