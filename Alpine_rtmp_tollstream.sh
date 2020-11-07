@@ -1,4 +1,4 @@
-#!/bin/bash
+I #!/bin/bash
 #Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
 #an rtmp server using nginx for use with tollstream.com
@@ -10,6 +10,8 @@
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
+   pkill screen
+   pkill ngrok
    reset
    echo "Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
