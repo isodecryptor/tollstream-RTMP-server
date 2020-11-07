@@ -12,6 +12,8 @@
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    echo "Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
+   pkill screen
+   pkill ngrok
    read
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
@@ -47,13 +49,6 @@ fi
 #define variables here
 
 #Define functions here
-killd () {
-    for session in $(screen -ls | grep -o '[0-9]\{4\}')
-    do
-        screen -S "${session}" -X quit;
-        screen -wipe
-     done
-}
 #Main
 #Allow ISH to be backgrounded to allow multiple apps to run while
 #ISH is running in the background with nginx as the rtmp server
@@ -68,6 +63,7 @@ fi
 cp nginx.conf /etc/nginx/nginx.conf
 nginx -s stop
 nginx
+reset
 cat Tollstream.banner
 echo Please press enter
 read
@@ -124,16 +120,17 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       ./ngrok authtoken $ngrokAuthkey
       fi
 else
+   reset
    echo "Skipping local tunnel nat bypass install"
 fi
-
+reset
+echo "Please enter your username associated with Tollstream.com." 
+touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
    echo "Your screen-name for tollstream is:"$(cat userNameSave)
    echo Press enter
    read
 else
-   echo "Please enter your username associated with Tollstream.com." 
-   touch userServerInfo.txt
    read userName
    touch userNameSave
    echo -n $userName > userNameSave
@@ -151,6 +148,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 else
    reset
    echo "Your public ip address is: "
+   echo ""
    wget -qO- http://ipecho.net/plain
    echo
    echo your localhost rtmp address is rtmp://127.0.0.1/larix/test
@@ -189,8 +187,5 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "how to host rtmp servers forum at Tollstream.com"
    echo "Please press enter when done making note of the urls"
    read
-   screen -r ngrok
-   killd
 fi
-killd
-exit
+exit	
