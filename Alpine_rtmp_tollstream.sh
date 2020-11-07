@@ -11,7 +11,6 @@
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill ngrok
-   pkill screen
    screen -wipe
    reset
    echo "🌍☄️ Welcome Back!☄️🌏"
