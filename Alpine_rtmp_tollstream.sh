@@ -22,7 +22,7 @@ else
     echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
     echo   "   cd /home"
     echo   "   git pull origin Alpine \"
-           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "else"
