@@ -10,6 +10,7 @@
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
+   reset
    echo "Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
    read
