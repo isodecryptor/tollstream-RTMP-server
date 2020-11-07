@@ -41,5 +41,6 @@ cat banner10
 
 echo Please press enter
 read
+cd ..
 
 exit
