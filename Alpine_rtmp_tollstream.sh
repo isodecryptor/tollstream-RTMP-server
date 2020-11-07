@@ -66,7 +66,7 @@ else
 fi
 cp nginx.conf /etc/nginx/nginx.conf
 reset
-./Tollstream_animated.banner
+Tollstream_animated_banner/Tollstream_animated.banner
 echo Please press enter
 read
 nginx -s stop
