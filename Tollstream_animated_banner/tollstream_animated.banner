@@ -1,4 +1,5 @@
 #!/bin/bash
+Cd Tollstream_animated_banner
 reset
 cat banner1 
 sleep .5
