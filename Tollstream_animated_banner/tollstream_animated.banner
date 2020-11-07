@@ -1,0 +1,44 @@
+#!/bin/bash
+reset
+cat banner1 
+sleep .5
+reset
+cat banner2 
+sleep .3
+reset
+cat banner3
+sleep .6
+reset
+cat banner4
+sleep .4
+reset
+cat banner5
+sleep .2
+reset
+cat banner6
+sleep .6
+reset
+cat banner7
+sleep .2
+reset
+cat banner8
+sleep .4 
+reset
+cat banner9
+sleep .2
+reset
+cat banner10
+sleep .5
+reset
+cat banner10
+sleep .5
+reset
+cat banner10
+reset
+sleep 1
+cat banner10
+
+echo Please press enter
+read
+
+exit
