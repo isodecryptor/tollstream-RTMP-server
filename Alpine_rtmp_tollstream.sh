@@ -66,9 +66,8 @@ else
 fi
 cp nginx.conf /etc/nginx/nginx.conf
 reset
+chmod +x /Tollstream_animated_banner/Tollstream_animated.banner
 Tollstream_animated_banner/Tollstream_animated.banner
-echo Please press enter
-read
 nginx -s stop
 nginx
 nginx -t
