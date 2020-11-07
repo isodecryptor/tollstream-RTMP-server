@@ -14,7 +14,7 @@ if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill screen
    screen -wipe
    reset
-   echo " Welcome Back!"
+   echo "🌍☄️ Welcome Back!☄️🌏"
    echo "Press any key to continue"
    read
 else
