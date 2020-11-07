@@ -11,6 +11,8 @@
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill ngrok
+   pkill screen
+   screen -wipe
    reset
    echo " Welcome Back!"
    echo "Press any key to continue"
@@ -48,6 +50,7 @@ else
     ) > /data/data/com.termux/files/home/prestart.sh
     (
     echo "/data/data/com.termux/files/home/prestart.sh"
+    echo "exit"
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
 #define variables here
@@ -144,7 +147,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #modify this to send commands between screens using the
 #how to send commands between screens in main fork.
    screen -d -m -S ngrok
-   screen -S ngrok -p 0 -X stuff "./ngrok tcp 1935^M"
+   screen -S ngrok -p 0 -X stuff "exec ./ngrok tcp 1935^M"
    sleep 4 
    (
    cat userNameSave; echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url') 
