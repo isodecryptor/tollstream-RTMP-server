@@ -12,23 +12,23 @@
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill ngrok
    reset
-   echo "  🐌🦗🐞🐛🤖Welcome Back! 😀😀😀🥳🤗"
+   echo " Welcome Back!"
    echo "Press any key to continue"
    read
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo "#!/bin/bash"
-    echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
+    echo  'if [ -d "/home/tollstream-RTMP-server"]; then'
     echo   "   cd /home"
     echo   "   git pull origin Alpine \"
-    echo   "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo       "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "else"
     echo   "   cd /home "
-    echo   "   git clone -b Alpine --single-branch"\
-           "https://github.com/isodecryptor/tollstream-RTMP-server"
+    echo   "   git clone -b Alpine --single-branch \"
+    echo   "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi"
@@ -43,10 +43,9 @@ else
     echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M"' 
     echo "screen -r startup"
-    echo "exit"  
+    echo "exit"
     ) > /data/data/com.termux/files/home/prestart.sh
-    ( 
-    
+    (
     echo "/data/data/com.termux/files/home/prestart.sh"
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
@@ -66,7 +65,7 @@ reset
 cat Tollstream.banner
 echo Please press enter
 read
-nginx -S stop
+nginx -s stop
 nginx
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
@@ -101,7 +100,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
          echo "You have already saved your authkey"
       else
       reset
-      echo "Please now register at https://www.ngrok.com (free version will work. Upgrade if interested)"
+      echo "Please now register at https://www.ngrok.com.free version will work. Upgrade if interested"
       echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
       echo "nat bypass solutions with our automated install scripts."
       echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
