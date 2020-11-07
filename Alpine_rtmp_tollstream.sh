@@ -13,7 +13,7 @@ if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill screen
    pkill ngrok
    reset
-   echo "Welcome Back! 😀😀😀🥳🤗"
+   echo "  🐌🦗🐞🐛🤖Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
    read
 else
