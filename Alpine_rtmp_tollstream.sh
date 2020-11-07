@@ -12,7 +12,6 @@
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    echo "Welcome Back! 😀😀😀🥳🤗"
    echo "Press any key to continue"
-   pkill screen
    pkill ngrok
    read
 else
@@ -32,14 +31,13 @@ else
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi"
-    echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
+    ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
     touch /home/prestart.sh
     chmod +x /home/prestart.sh
     ( echo "#!/bin/bash"
     echo "/home/tollstream-RTMP-server/Tollstreamstartup.sh"
-    echo "exit"  
     ) > /home/prestart.sh
     ( 
     echo "#!/bin/bash"
