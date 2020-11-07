@@ -49,6 +49,7 @@ else
     ) > /data/data/com.termux/files/home/prestart.sh
     (
     echo "/data/data/com.termux/files/home/prestart.sh"
+    echo "exit"
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
 #define variables here
@@ -111,7 +112,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "into the terminal for usage with tollstreams e-commerce services."
       read ngrokAuthkey
       num=$(echo -n "$ngrokAuthkey" | wc -c)
-      while [ $num -gt 50 ] && [ $num -lt 45];
+      while [ $num -gt 50 ] || [ $num -lt 45];
       do
          reset
          echo "Please double check that your are entering the"
