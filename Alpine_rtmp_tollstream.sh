@@ -54,13 +54,7 @@ fi
 #define variables here
 
 #Define functions here
-killd () {
-    for session in $(screen -ls | grep -o '[0-9]\{4\}')
-    do
-        screen -S "${session}" -X quit;
-        screen -wipe
-     done
-}
+
 #Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 killd
@@ -199,8 +193,8 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "Please press enter when done making note of the urls"
    read
    screen -r ngrok
-   killd
+   pkill ngrok
+   pkill screen 
 fi
-killd
 exit
 
