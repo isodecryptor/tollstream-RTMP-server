@@ -174,9 +174,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    reset
    echo "Your public rtmp server address:"
    echo
-   echo "rtmp://"
+   echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  -n "/larix/test"
+   echo  "/larix/test"
    echo
    echo
    echo "Your localhost rtmp server address:"
@@ -186,7 +186,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo rtmp://$(hostname -i); echo ":1935/larix/test"
+   echo "rtmp://"$(hostname -i); echo -n ":1935/larix/test"
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
