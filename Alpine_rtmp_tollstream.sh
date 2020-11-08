@@ -13,8 +13,8 @@ if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill ngrok
    screen -wipe
    reset
-   echo ".            🌍☄️ Welcome Back!☄️🌏"
-   echo "Press any key to continue"
+   echo ".               🌍☄️ Welcome Back!☄️🌏"
+   echo "               Press any key to continue"
    read
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
@@ -148,9 +148,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -S ngrok -p 0 -X stuff "exec ./ngrok tcp 1935^M"
    sleep 4 
    (
-   cat userNameSave; echo "rtmp://" 
+   echo 
+   cat userNameSave; echo -n ":  rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo -n "/larix/test\n") > userServerInfo.txt
+   echo  "/larix/test" ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
@@ -162,8 +163,8 @@ else
    echo
    echo "Your public rtmp address should be:"
    echo
-   echo "rtmp://"$(wget -qO- http://ipecho.net/plain)
-   echo -n ":1935/larix/stringofchoice"
+   echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
+   echo ":1935/larix/stringofchoice"
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
 echo :1935/larix/stringofchoice) > userServerInfo.txt
@@ -176,7 +177,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/test"
+   echo   "/larix/test"
    echo
    echo
    echo "Your localhost rtmp server address:"
@@ -186,9 +187,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo "rtmp://"$(hostname -i); echo -n ":1935/larix/test"
+   echo -n "rtmp://"$(hostname -i); echo ":1935/larix/test"
    echo
-   echo "Please make note of the rtmp urls that will be used in your system"
+   echo "Please make note of the rtmp ur4ls that will be used in your system"
    echo "configuration"
    echo "A explanation of when to use which url will he explained in the "
    echo "how to host rtmp servers forum at Tollstream.com"
@@ -198,7 +199,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    pkill screen
    pkill ngrok
    screen -wipe
-   
+
 fi
 exit
 
