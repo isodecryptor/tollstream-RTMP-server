@@ -189,7 +189,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo "configuration"
    echo "A explanation of when to use which url will he explained in the "
    echo "how to host rtmp servers forum at Tollstream.com"
-   echo "Please press enter when done making note of the urls"
+   echo "Please press enter when finished making note of the urls"
    read
    screen -r ngrok
    pkill screen
