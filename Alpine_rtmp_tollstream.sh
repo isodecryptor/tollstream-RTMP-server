@@ -148,7 +148,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -S ngrok -p 0 -X stuff "exec ./ngrok tcp 1935^M"
    sleep 4 
    (
-   cat userNameSave; echo "rtmp://" 
+   cat userNameSave; echo -n "rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
    echo -n /larix/test) > userServerInfo.txt
 else
