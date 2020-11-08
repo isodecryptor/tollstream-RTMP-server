@@ -155,14 +155,14 @@ else
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
    echo
-   echo your localhost rtmp address is rtmp://127.0.0.1/larix/test
+   echo "your localhost rtmp address is rtmp://127.0.0.1/larix/test"
    echo
-   echo Your private rtmp address is : rtmp://$(hostname -i ):1935/larix/test
+   echo "Your private rtmp address is : rtmp://"$(hostname -i );echo -n ":1935/larix/test"
    echo
    echo "Your public rtmp address should be:"
    echo
-   echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
-   echo  :1935/larix/stringofchoice
+   echo "rtmp://"$(wget -qO- http://ipecho.net/plain)
+   echo -n ":1935/larix/stringofchoice"
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
 echo :1935/larix/stringofchoice) > userServerInfo.txt
