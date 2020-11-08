@@ -148,9 +148,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    screen -S ngrok -p 0 -X stuff "exec ./ngrok tcp 1935^M"
    sleep 4 
    (
-   cat userNameSave; echo -n "rtmp://" 
+   cat userNameSave; echo "rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo -n "/larix/test"\n) > userServerInfo.txt
+   echo -n "/larix/test\n") > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
