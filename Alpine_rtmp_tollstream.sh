@@ -171,19 +171,19 @@ openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    reset
-   echo Your public rtmp server address:
+   echo "Your public rtmp server address:"
    echo
    echo -n $(curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url')
-   echo  /larix/test
+   echo  -n "/larix/test"
    echo
    echo
-   echo Your localhost rtmp server address:
+   echo "Your localhost rtmp server address:"
    echo "rtmp://127.0.0.1/larix/test"
    echo
    echo
-   echo Your private rtmp server address is :
+   echo "Your private rtmp server address is :"
    echo -n rtmp://$(hostname -i):1935
-   echo  /larix/test
+   echo  -n "/larix/test"
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
