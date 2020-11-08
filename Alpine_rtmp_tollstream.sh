@@ -18,7 +18,7 @@ else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo "#!/bin/bash"
-    echo  'if [ -d "/home/tollstream-RTMP-server"]; then' 
+    echo  'if [ -d "/home/tollstream-RTMP-server" ]; then' 
     echo   "   cd /home"
     echo   "   git pull origin  Iphone" \
            "https://github.com/isodecryptor/tollstream-RTMP-server"
@@ -53,7 +53,6 @@ fi
 #ISH is running in the background with nginx as the rtmp server
 cat /dev/location > /dev/NULL &.
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
-killd
 if [[ -f "/run/nginx" ]]; then
 echo /run/nginx was created,already
 else
