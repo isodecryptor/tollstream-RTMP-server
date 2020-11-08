@@ -149,7 +149,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    sleep 4 
    (
    cat userNameSave; echo "rtmp://" \
-   echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
+   echo $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
    echo -n /larix/test) > userServerInfo.txt
 else
    reset
@@ -173,7 +173,7 @@ nc 52.86.45.108 2001 < userServerInfoCipher.dat
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    reset
    echo "Your public rtmp server address:"
-   echo
+   echo "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
    echo  -n "/larix/test"
    echo
@@ -183,8 +183,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo
    echo "Your private rtmp server address is :"
-   echo -n rtmp://$(hostname -i):1935
-   echo  -n "/larix/test"
+   echo rtmp://$(hostname -i):1935/larix/test"
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
