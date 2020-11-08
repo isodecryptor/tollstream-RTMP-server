@@ -186,7 +186,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo rtmp://$(hostname -i):1935/larix/test"
+   echo rtmp://$(hostname -i); echo ":1935/larix/test"
    echo
    echo "Please make note of the rtmp urls that will be used in your system"
    echo "configuration"
