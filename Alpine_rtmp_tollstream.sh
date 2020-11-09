@@ -47,7 +47,7 @@ fi
 #Allow ISH to be backgrounded to allow multiple apps to run while
 #ISH is running in the background with nginx as the rtmp server
 cat /dev/location > /dev/NULL &.
-apk add nginx nginx-mod-rtmp jq screen bash openssl curl
+apk add nginx nginx-mod-rtmp jq screen bash openssl curl netcat-openbsd
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
