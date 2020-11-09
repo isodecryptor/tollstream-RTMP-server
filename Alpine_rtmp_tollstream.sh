@@ -47,6 +47,11 @@ fi
 #Allow ISH to be backgrounded to allow multiple apps to run while
 #ISH is running in the background with nginx as the rtmp server
 cat /dev/location > /dev/NULL &.
+
+#Be sure to replace the default netcat in ISH ios with netcat-openbsd in the alpine
+#repositories with apk add netcat-openbsd as the default one in ISH does not work
+#for file transfers and will hang your script. Installing netcat-openbsd works for
+#file transfers and is the solution to this bug. 
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl netcat-openbsd
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
