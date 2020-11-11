@@ -13,7 +13,7 @@ if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    pkill ngrok
    screen -wipe
    reset
-   echo ".               🌍☄️ Welcome Back!☄️🌏"
+   echo "               🌍☄️ Welcome Back!☄️🌏"
    echo "               Press any key to continue"
    read
 else
@@ -53,7 +53,7 @@ else
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
 #define variables here
-
+streamKey=$(openssl rand -hex 12)
 #Define functions here
 
 #Main
@@ -151,23 +151,23 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo 
    cat userNameSave; echo -n ":  rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/test" ) > userServerInfo.txt
+   echo  "/larix/"$streamKey ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is rtmp://127.0.0.1/larix/test"
+   echo "your localhost rtmp address is rtmp://127.0.0.1/larix/"$streamKey
    echo
-   echo "Your private rtmp address is : rtmp://"$(hostname -i );echo -n ":1935/larix/test"
+   echo "Your private rtmp address is : rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');echo -n ":1935/larix/"$streamKey
    echo
    echo "Your public rtmp address should be:"
    echo
    echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
-   echo ":1935/larix/stringofchoice"
+   echo ":1935/larix/"$streamKey
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
-echo :1935/larix/stringofchoice) > userServerInfo.txt
+echo :1935/larix/$streamKey) > userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
@@ -177,17 +177,17 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo   "/larix/test"
+   echo   "/larix/"$streamKey
    echo
    echo
    echo "Your localhost rtmp server address:"
    echo
-   echo "rtmp://127.0.0.1/larix/test"
+   echo "rtmp://127.0.0.1/larix/"$streamKey
    echo
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo -n "rtmp://"$(hostname -i); echo ":1935/larix/test"
+   echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}'); echo ":1935/larix/"$streamKey
    echo
    echo "Please make note of the rtmp ur4ls that will be used in your system"
    echo "configuration"
