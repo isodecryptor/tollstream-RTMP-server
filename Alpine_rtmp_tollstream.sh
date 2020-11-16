@@ -53,9 +53,10 @@ else
     ) >> /data/data/com.termux/files/usr/etc/profile
 fi
 #define variables here
-streamKey=$(openssl rand -hex 12)
+streamKey=$(openssl rand -base64 36 | tr -d "=+/" | cut -c1-25)
+name=$streamKey
 #Define functions here
-echo $streamKey > /home/tollstream-RTMP-server/streamKey.save
+echo $name > /home/tollstream-RTMP-server/streamKey.save
 #Main
 apk add nginx nginx-mod-rtmp jq screen bash openssl curl
 if [[ -f "/run/nginx" ]]; then
@@ -157,14 +158,14 @@ else
    echo "Your public ip address is: "
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/\$streamKey"
+   echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/name_publish"
    echo
-   echo "Your private rtmp address is : rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');echo -n ":1935/larix/\$streamKey"
+   echo "Your private rtmp address is : rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');echo -n ":1935/larix/name_publish"
    echo
    echo "Your public rtmp address should be:"
    echo
    echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
-   echo ":1935/larix/"$streamKey
+   echo ":1935/larix/$streamKey"
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
 echo :1935/larix/$streamKey) > userServerInfo.txt
@@ -177,17 +178,17 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo   "/larix/"$streamKey
+   echo   "/larix/$streamKey"
    echo
    echo
    echo "Your localhost rtmp server address:"
    echo
-   echo "rtmp://127.0.0.1:1935/larix/\$streamKey"
+   echo "rtmp://127.0.0.1:1935/larix/name_publish"
    echo
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}'); echo ":1935/larix/\$streamKey"
+   echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}'); echo ":1935/larix/name_publish"
    echo
    echo "Please make note of the rtmp ur4ls that will be used in your system"
    echo "configuration"
