@@ -41,8 +41,10 @@ else
     ) > /etc/profile
 fi
 #define variables here
-
+streamKey=$(openssl rand -base64 36 | tr -d "=+/" | cut -c1-25)
+name=$streamKey
 #Define functions here
+echo $name > /home/tollstream-RTMP-server/streamKey.save
 #Main
 #Allow ISH to be backgrounded to allow multiple apps to run while
 #ISH is running in the background with nginx as the rtmp server
@@ -147,24 +149,24 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo 
    cat userNameSave; echo -n ":  rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/test" ) > userServerInfo.txt
+   echo  "/larix/"$streamKey ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
    echo ""
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is rtmp://127.0.0.1/larix/test"
+   echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/name_publish"
    echo
-   echo "Your private rtmp address is : rtmp://"$(hostname -i );echo -n ":1935/larix/test"
+   echo "Your private rtmp address is : rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');echo -n ":1935/larix/name_publish"
    echo
    echo "Your public rtmp address should be:"
    echo
    echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
-   echo ":1935/larix/stringofchoice"
+   echo ":1935/larix/$streamKey"
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
-echo :1935/larix/stringofchoice) > userServerInfo.txt
+echo :1935/larix/$streamKey) > userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
@@ -174,19 +176,19 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo   "/larix/test"
+   echo   "/larix/$streamKey"
    echo
    echo
    echo "Your localhost rtmp server address:"
    echo
-   echo "rtmp://127.0.0.1/larix/test"
+   echo "rtmp://127.0.0.1:1935/larix/name_publish"
    echo
    echo
    echo "Your private rtmp server address is :"
    echo
-   echo -n "rtmp://"$(hostname -i); echo ":1935/larix/test"
+   echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}'); echo ":1935/larix/name_publish"
    echo
-   echo "Please make note of the rtmp urls that will be used in your system"
+   echo "Please make note of the rtmp ur4ls that will be used in your system"
    echo "configuration"
    echo "A explanation of when to use which url will he explained in the "
    echo "how to host rtmp servers forum at Tollstream.com"
