@@ -22,7 +22,7 @@ else
    ( echo "#!/bin/bash"
     echo  'if [ -d "/home/tollstream-RTMP-server"]; then'
     echo   "   cd /home"
-    echo   "   git pull; git stash; git pull "
+    echo   "   git pull; git stash; git pull; git config core.fileMode false "
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "else"
