@@ -57,7 +57,7 @@ name=$streamKey
 #Define functions here
 echo $name > /home/tollstream-RTMP-server/streamKey.save
 #Main
-apk add nginx nginx-mod-rtmp jq screen bash openssl curl
+apk add nginx nginx-mod-rtmp jq bash openssl curl
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
