@@ -27,9 +27,6 @@ else
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "else"
-    echo   "   cd /home "
-    echo   "   git clone -b Alpine --single-branch "\
-           "https://github.com/isodecryptor/tollstream-RTMP-server"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "fi"
