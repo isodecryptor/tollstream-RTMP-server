@@ -23,7 +23,7 @@ else
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo "#!/bin/bash"
     echo   "   cd /home/tollstream-RTMP-server"
-    echo   "   git config core.fileMode false; git stash; git pull"
+    echo   "   git config --global core.fileMode false; git stash; git pull"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   ./Alpine_rtmp_tollstream.sh"
     echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
