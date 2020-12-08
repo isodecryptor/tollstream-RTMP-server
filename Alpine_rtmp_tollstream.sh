@@ -24,7 +24,7 @@ else
    ( echo "#!/bin/bash"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   reset"
-    echo   "   echo ' Would you to check for updates for tollstream.com's server scripts and auto install?. Warning. If modifying ' "
+    echo   "   echo ' Would you to check for updates for tollstream.coms server scripts and auto install?. Warning. If modifying ' "
     echo   "   echo ' files like nginx.conf or Alpine_rtmp_tollstream.sh, manually, you ' "
     echo   "   echo ' are advised to back up these custom configurations, as you will likely loose them. ' "
     echo   "   echo ' Manual remerging of personal configurations are required after updating, if ' "
