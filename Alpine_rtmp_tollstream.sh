@@ -38,6 +38,7 @@ else
     echo   "   done "
     echo   "   if [ 'update' = [yY] ]
     echo   "      git config --global core.fileMode false; git stash; git pull"
+    echo   "      chmod +x Alpine_rtmp_tollstream.sh "
     echo   "   else"
     echo   "      cd /home/tollstream-RTMP-server"
     echo   "      ./Alpine_rtmp_tollstream.sh"
