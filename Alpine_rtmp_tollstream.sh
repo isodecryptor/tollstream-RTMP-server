@@ -36,7 +36,7 @@ else
     echo   "   echo ' Please answer y for yes or n for no. ' "
     echo   "   read update "
     echo   "   done "
-    echo   "   if [ 'update' = [yY] ] "
+    echo   "   if [ 'update' = 'y'] || [ 'update' = 'Y' ]; then "
     echo   "      git config --global core.fileMode false; git stash; git pull "
     echo   "      chmod +x Alpine_rtmp_tollstream.sh "
     echo   "   else "
