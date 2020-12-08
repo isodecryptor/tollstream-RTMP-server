@@ -36,7 +36,7 @@ else
     echo   "   echo ' Please answer y for yes or n for no. ' "
     echo   "   read update "
     echo   "   done "
-    echo   "   if [ "update" = [yY] ]
+    echo   "   if [ 'update' = [yY] ]
     echo   "      git config --global core.fileMode false; git stash; git pull"
     echo   "   else"
     echo   "      cd /home/tollstream-RTMP-server"
