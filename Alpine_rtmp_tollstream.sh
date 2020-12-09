@@ -188,7 +188,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo   "/larix/$streamKey"
+   echo   " /larix/$(cat streamKey.save) "
    echo
    echo
    echo "Your localhost rtmp server address:"
