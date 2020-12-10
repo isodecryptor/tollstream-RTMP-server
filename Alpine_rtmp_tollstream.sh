@@ -51,9 +51,9 @@ else
     ( echo "#!/bin/bash"
     echo "pkill screen"
     echo "screen -d -m -S startup"
-    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M"' 
-    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M"' 
-    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M"' 
+    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M" '  
+    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M" ' 
+    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M" ' 
     echo "screen -r startup"
     echo "exit"
     ) > /data/data/com.termux/files/home/prestart.sh
@@ -162,7 +162,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo 
    cat userNameSave; echo -n ":  rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/$streamKey ) > userServerInfo.txt
+   echo  "/larix/$streamKey" ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
