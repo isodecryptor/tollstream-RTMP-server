@@ -32,11 +32,11 @@ else
     echo   "   echo ' Otherwise, updating is recommended and new features will be listed as they are added. ' "
     echo   "   echo ' Please enter y for yes, update, or n for no, skip update check. ' "
     echo   "   read update "
-    echo   "   while [[ '$update' != [yYnN] ]]; do "
+    echo   '   while [[ "$update" != [yYnN] ]]; do '
     echo   "   echo ' Please answer y for yes or n for no. ' "
     echo   "   read update "
     echo   "   done "
-    echo   "   if [ '$update' = 'y' ] || [ '$update' = 'Y' ]; then "
+    echo   '   if [ "$update" = "y" ] || [ "$update" = "Y" ]; then '
     echo   "      git config --global core.fileMode false; git stash; git pull "
     echo   "      chmod +x Alpine_rtmp_tollstream.sh "
     echo   "   else "
