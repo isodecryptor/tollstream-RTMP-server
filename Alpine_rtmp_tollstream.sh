@@ -18,18 +18,28 @@ else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
    ( echo "#!/bin/bash"
-    echo  'if [ -d "/home/tollstream-RTMP-server" ]; then' 
-    echo   "   cd /home"
-    echo   "  git config core.fileMode false; git pull; git stash; git pull "
     echo   "   cd /home/tollstream-RTMP-server"
-    echo   "   ./Alpine_rtmp_tollstream.sh"
-    echo   "else"
-    echo   "   cd /home "
-    echo   "   git clone -b Iphone --single-branch"\
-           "https://github.com/isodecryptor/tollstream-RTMP-server"
-    echo   "   cd /home/tollstream-RTMP-server"
-    echo   "   ./Alpine_rtmp_tollstream.sh"
-    echo   "fi"
+    echo   "   reset"
+    echo   "   echo ' Would you to check for updates for tollstream.coms server scripts and auto install?. Warning. If modifying ' "
+    echo   "   echo ' files like nginx.conf or Alpine_rtmp_tollstream.sh, manually, you ' "
+    echo   "   echo ' are advised to back up these custom configurations, as you will likely loose them. ' "
+    echo   "   echo ' Manual remerging of personal configurations are required after updating, if ' "
+    echo   "   echo ' these files have been, manually, modified. ' "
+    echo   "   echo ' Otherwise, updating is recommended and new features will be listed as they are added. ' "
+    echo   "   echo ' Please enter y for yes, update, or n for no, skip update check. ' "
+    echo   "   read update "
+    echo   '   while [[ "$update" != [yYnN] ]]; do '
+    echo   "   echo ' Please answer y for yes or n for no. ' "
+    echo   "   read update "
+    echo   "   done "
+    echo   '   if [ "$update" = "y" ] || [ "$update" = "Y" ]; then '
+    echo   "      git config --global core.fileMode false; git stash; git pull "
+    echo   "      chmod +x Alpine_rtmp_tollstream.sh "
+    echo   "      ./Alpine_rtmp_tollstream.sh "
+    echo   "   else "
+    echo   "      cd /home/tollstream-RTMP-server "
+    echo   "      ./Alpine_rtmp_tollstream.sh "
+    echo   "   fi "
     echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
@@ -63,8 +73,8 @@ cp nginx.conf /etc/nginx/nginx.conf
 reset
 chmod +x /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
 /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
-nginx -s stop
-nginx
+
+nginx -s reload
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software." 
