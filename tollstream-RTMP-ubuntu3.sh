@@ -11,6 +11,8 @@ killd () {
         screen -S "${session}" -X quit;
     done
 }
+pkill screen
+pkill ngrok
 #Main()
 cat Tollstream.banner
 echo "Please press enter"
