@@ -171,8 +171,8 @@ else
    echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/name_publish"
    echo
    echo -n "Your private rtmp address is : " 
-   echo -n rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');
-   echo ":1935/larix/name_publish"
+   echo -n rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');"
+   echo :1935/larix/name_publish"
    echo
    echo "Your public rtmp address should be:"
    echo -n
