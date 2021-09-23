@@ -169,7 +169,7 @@ else
    echo -n
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is 
+   echo "your localhost rtmp address is "
    echo
    echo -n "rtmp://127.0.0.1:1935/larix/name_publish"
    echo
