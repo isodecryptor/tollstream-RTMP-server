@@ -166,17 +166,21 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 else
    reset
    echo "Your public ip address is: "
+   echo -n
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/name_publish"
+   echo "your localhost rtmp address is 
+   echo
+   echo -n "rtmp://127.0.0.1:1935/larix/name_publish"
    echo
    echo -n "Your private rtmp address is : " 
+   echo
    echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');
    echo ":1935/larix/name_publish"
    echo
-   echo "Your public rtmp address should be:"
-   echo -n
-   echo  "rtmp://"$(wget -qO- http://ipecho.net/plain)
+   echo -n "Your public rtmp address should be:"
+   echo 
+   echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
    echo ":1935/larix/$streamKey"
 
 (cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
