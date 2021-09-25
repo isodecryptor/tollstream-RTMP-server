@@ -63,7 +63,7 @@ cat /dev/location > /dev/NULL &
 #repositories with apk add netcat-openbsd as the default one in ISH does not work
 #for file transfers and will hang your script. Installing netcat-openbsd works for
 #file transfers and is the solution to this bug. 
-apk add nginx nginx-mod-rtmp jq bash openssl curl netcat-openbsd
+apk add nginx nginx-mod-rtmp jq bash openssl curl netcat-openbsd ffmpeg
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
