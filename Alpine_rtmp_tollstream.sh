@@ -47,8 +47,8 @@ else
     echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
-    touch /data/data/com.termux/files/home/prestart.sh
-    chmod +x /data/data/com.termux/files/home/prestart.sh
+    touch $PWD/prestart.sh
+    chmod +x $PWD/prestart.sh
     ( echo "#!/bin/bash"
     echo "pkill screen"
     echo "screen -d -m -S startup"
@@ -57,11 +57,11 @@ else
     echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M" ' 
     echo "screen -r startup"
     echo "exit"
-    ) > /data/data/com.termux/files/home/prestart.sh
+    ) > $PWD/prestart.sh
     (
-    echo "/data/data/com.termux/files/home/prestart.sh"
+    echo "$PWD/prestart.sh"
     echo "exit"
-    ) >> /data/data/com.termux/files/usr/etc/profile
+    ) >> /etc/profile
 fi
 #define variables here
 streamKey=$(openssl rand -base64 36 | tr -d "=+/" | cut -c1-25)
