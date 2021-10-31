@@ -79,7 +79,6 @@ cp nginx.conf /etc/nginx/nginx.conf
 reset
 chmod +x /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
 /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
-nginx
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
 echo "about your streaming software."
