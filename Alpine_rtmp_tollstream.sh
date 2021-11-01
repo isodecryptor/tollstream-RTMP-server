@@ -1,10 +1,9 @@
+
 #!/bin/bash
-#git pull test
-#changes change test
 #Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
 #an rtmp server using nginx for use with tollstream.com
-#this install has been tested on android. Size for ll
+#this install has been tested on android. Size for install
 #is 100MB after install. This is 1/6th the size of the install
 #size for ubuntu and seems perfect for lightweight applications
 #such as cell phones. This will also run on older androids
@@ -12,11 +11,9 @@
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
+   echo "Welcome Back! 😀😀😀🥳🤗"
+   echo "Press any key to continue"
    pkill ngrok
-   screen -wipe
-   reset
-   echo "               🌍☄️ Welcome Back!☄️🌏"
-   echo "               Press any key to continue"
    read
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
@@ -47,21 +44,11 @@ else
     echo   "exit" ) > /home/tollstream-RTMP-server/Tollstreamstartup.sh
     #Find the correct directory for prestart so no recursive loop starts inside bash.bashrc. Must call external bash shell script in bash.bashrc, otherwise,
     #infinite recursive loop will occur because of it continously calling bash or the author of termux is being a, secretive , douche and hiding some game. 
-    touch $PWD/prestart.sh
-    chmod +x $PWD/prestart.sh
+  
     ( echo "#!/bin/bash"
-    echo "pkill screen"
-    echo "screen -d -m -S startup"
-    echo 'screen -S startup -p 0 -X stuff "proot-distro login alpine^M" '  
-    echo 'screen -S startup -p 0 -X stuff "cd /home/tollstream-RTMP-server^M" ' 
-    echo 'screen -S startup -p 0 -X stuff "./Tollstreamstartup.sh^M" ' 
-    echo "screen -r startup"
+    echo "/home/tollstream-RTMP-server/Tollstreamstartup.sh"
     echo "exit"
-    ) > $PWD/prestart.sh
-    (
-    echo "$PWD/prestart.sh"
-    echo "exit"
-    ) >> /etc/profile
+    ) > /etc/profile
 fi
 #define variables here
 streamKey=$(openssl rand -base64 36 | tr -d "=+/" | cut -c1-25)
@@ -69,7 +56,15 @@ name=$streamKey
 #Define functions here
 echo $name > /home/tollstream-RTMP-server/streamKey.save
 #Main
-apk add nginx nginx-mod-rtmp jq bash openssl curl
+#Allow ISH to be backgrounded to allow multiple apps to run while
+#ISH is running in the background with nginx as the rtmp server
+cat /dev/location > /dev/NULL &
+
+#Be sure to replace the default netcat in ISH ios with netcat-openbsd in the alpine
+#repositories with apk add netcat-openbsd as the default one in ISH does not work
+#for file transfers and will hang your script. Installing netcat-openbsd works for
+#file transfers and is the solution to this bug. 
+apk add nginx nginx-mod-rtmp jq bash openssl curl netcat-openbsd ffmpeg
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
@@ -79,10 +74,11 @@ cp nginx.conf /etc/nginx/nginx.conf
 reset
 chmod +x /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
 /home/tollstream-RTMP-server/Tollstream_animated_banner/tollstream_animated.banner
+nginx
 nginx -t
 echo "Your rtmp server is set up. Please answer the questions"
-echo "about your streaming software."
-echo "RTMP Servers require that port florwarding is enabled"
+echo "about your streaming software." 
+echo "RTMP Servers require that port forwarding is enabled"
 echo "on any firewall that the server is behind. Examples are"
 echo "routers, and operating system. The default port is tcp :1935"
 echo ",typically mapped to localhost:1935 or 127.0.0.1:1935. For ease of use,"
@@ -104,8 +100,8 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "This file exists on your filesystem."
    else
       reset
-      wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
-      tar -xvf /home/tollstream-RTMP-server/ngrok-stable-linux-amd64.zip
+      wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
+      unzip /home/tollstream-RTMP-server/ngrok-stable-linux-386.zip
    fi
    str=$(cat /root/.ngrok2/ngrok.yml)
       if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
@@ -119,7 +115,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "about plans and licensing details."
       echo "Please enter your authkey located at "
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
-      echo "into the terminal for usage with tollstreams e-commerce services."
+      echo "into the terminal for usage with tollstream's e-commerce services."
       read ngrokAuthkey
       num=$(echo -n "$ngrokAuthkey" | wc -c)
       while [ $num -gt 50 ] || [ $num -lt 45];
@@ -136,13 +132,14 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       ./ngrok authtoken $ngrokAuthkey
       fi
 else
+   reset
    echo "Skipping local tunnel nat bypass install"
 fi
 reset
 echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
-   echo "Your screen for tollstream is:"$(cat userNameSave)
+   echo "Your screen-name for tollstream is:"$(cat userNameSave)
    echo Press enter
    read
 else
@@ -161,24 +158,19 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo 
    cat userNameSave; echo -n ":  rtmp://" 
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/$streamKey" ) > userServerInfo.txt
+   echo  "/larix/"$streamKey ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
-   echo -n
+   echo ""
    wget -qO- http://ipecho.net/plain
    echo
-   echo "your localhost rtmp address is "
+   echo "your localhost rtmp address is rtmp://127.0.0.1:1935/larix/name_publish"
    echo
-   echo -n "rtmp://127.0.0.1:1935/larix/name_publish"
+   echo "Your private rtmp address is : rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');echo -n ":1935/larix/name_publish"
    echo
-   echo -n "Your private rtmp address is : " 
+   echo "Your public rtmp address should be:"
    echo
-   echo -n "rtmp://"$(ip route get 1.2.3.4 | awk '{print $7}');
-   echo ":1935/larix/name_publish"
-   echo
-   echo -n "Your public rtmp address should be:"
-   echo 
    echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
    echo ":1935/larix/$streamKey"
 
@@ -193,12 +185,12 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo
    echo -n "rtmp://"
    echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo   "/larix/$streamKey "
+   echo   "/larix/$streamKey"
    echo
    echo
    echo "Your localhost rtmp server address:"
    echo
-   echo -n "rtmp://127.0.0.1:1935/larix/name_publish"
+   echo "rtmp://127.0.0.1:1935/larix/name_publish"
    echo
    echo
    echo "Your private rtmp server address is :"
@@ -218,4 +210,3 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 
 fi
 exit
-
