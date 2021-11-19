@@ -6,6 +6,8 @@
 
 
 virtual_machine() {
+is specific task, I'd use make
+
 
 apt update && apt install wget, qemu
 
@@ -52,7 +54,22 @@ tollstream_chroot() {
         architecture='armv7'
 
   fi
-
+  
+  if [ $architecture == 'i686' ];
+  
+     then
+     
+     architecture='x86'
+     
+  fi   
+  
+  if [ $architectur == 'i386' ];
+  
+     then
+     
+     architecture='x86'
+     
+  fi
 
   curl -LO http://mirror.clarkson.edu/alpine/v3.14/main/$architecture/apk-tools-static-2.12.7-r0.apk
 
