@@ -99,8 +99,6 @@ tollstream_chroot() {
 
   echo "http://mirror.clarkson.edu/alpine/v3.14/main" > $chrootDir/etc/apk/repositories
 
-  cp -r /etc/terminfo $chrootDir/etc/terminfo
-
   chroot $chrootDir rm /etc/mtab 2> /dev/null
 
   chroot $chrootDir ln -s /proc/mounts /etc/mtab
