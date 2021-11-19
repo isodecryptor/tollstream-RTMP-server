@@ -56,29 +56,29 @@ tollstream_chroot() {
   ./sbin/apk.static -X http://mirror.clarkson.edu/alpine/latest-stable/main \
   -U --allow-untrusted -p $HOME/Tollstream --initdb add alpine-base
 
-  mount -o bind /dev $HOME/Tollstream/dev
+  mount -o bind /dev /Tollstream/dev
 
-  mount -t proc none $HOME/Tollstream/proc
+  mount -t proc none /Tollstream/proc
 
-  mount -o bind /sys $HOME/Tollstream/sys
+  mount -o bind /sys /Tollstream/sys
 
-  mount -t tmpfs tmpfs $HOME/Tollstream/dev/shm
+  mount -t tmpfs tmpfs /Tollstream/dev/shm
 
-  mount -t devtmpfs devtmpfs $HOME/Tollstream/dev
+  mount -t devtmpfs devtmpfs /Tollstream/dev
 
-  mount -t devpts devpts $HOME/Tollstream/dev/pts
+  mount -t devpts devpts /Tollstream/dev/pts
 
-  cp -L /etc/resolv.conf $HOME/Tollstream/etc/
+  cp -L /etc/resolv.conf /Tollstream/etc/
 
-  mkdir -p $HOME/Tollstream/etc/apk
+  mkdir -p /Tollstream/etc/apk
 
-  echo "http://mirror.clarkson.edu/alpine/v3.14/main" > $HOME/Tollstream/etc/apk/repositories
+  echo "http://mirror.clarkson.edu/alpine/v3.14/main" > /Tollstream/etc/apk/repositories
 
-  chroot $HOME/Tollstream/ rm /etc/mtab 2> /dev/null
+  chroot /Tollstream/ rm /etc/mtab 2> /dev/null
 
-  chroot $HOME/Tollstream/ ln -s /proc/mounts /etc/mtab   
+  chroot /Tollstream/ ln -s /proc/mounts /etc/mtab   
 
-  chroot $HOME/Tollstream/ /bin/ash -l  
+  chroot /Tollstream/ /bin/ash -l  
 
 
 
