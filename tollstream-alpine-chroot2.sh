@@ -35,72 +35,56 @@ qemu-system-x86_64 -m $memory_allocate -nic user -boot d -cdrom alpine-virt-3.14
 
 tollstream_chroot() {
 
-  cd $HOME
+  cd $(echo $HOME)
 
   mkdir Tollstream
 
   cd Tollstream
 
-  chrootDir=$PWD
+  chrootDir=$(echo $PWD)
 
   architecture=$(arch)
 
-  if [ $architecture == 'armv7l' ]; 
+  if [ $architecture == 'armv7l' ];
 
         then
 
         architecture='armv7'
 
   fi
-  
-  if [ $architecture == 'i386' ];
-  
-      then
-      
-      architecture='x86'
-      
-  fi
-  
-  if [ $architecture == 'i686' ];
-  
-      then
-      
-      architecture='x86'
-      
-  fi
 
 
   curl -LO http://mirror.clarkson.edu/alpine/v3.14/main/$architecture/apk-tools-static-2.12.7-r0.apk
 
-  tar -xzf apk-tools-static-*.apk 
+  tar -xzf apk-tools-static-*.apk
 
-  ./sbin/apk.static -X http://mirror.clarkson.edu/alpine/latest-stable/main -U --allow-untrusted -p $chrootDir --initdb add alpine-base
+  ./sbin/apk.static -X http://mirror.clarkson.edu/alpine/latest-stable/main -U --allow-untrusted -p $(echo $chrootDir) --initdb add alpine-base
 
-  mount -o bind /dev $chrootDir/dev
+  mount -o bind /dev $(echo $chrootDir)/dev
 
-  mount -t proc none $chrootDir/proc
+  mount -t proc none $(echo $chrootDir)/proc
 
-  mount -o bind /sys $chrootDir/sys
+  mount -o bind /sys $(echo $chrootDir)/sys
 
-  mount -t devpts devpts $chrootDir/dev/pts
+  mount -t devpts devpts $(echo $chrootDir)/dev/pts
 
-  cp -L /etc/resolv.conf $chrootDir/etc/
+  cp -L /etc/resolv.conf $(echo $chrootDir)/etc/
 
-  mkdir -p $chrootDir/etc/apk
+  mkdir -p $(echo $chrootDir)/etc/apk
 
-  echo "http://mirror.clarkson.edu/alpine/v3.14/main" > $chrootDir/etc/apk/repositories
+  echo "http://mirror.clarkson.edu/alpine/v3.14/main" > $(echo $chrootDir)/etc/apk/repositories
 
-  cp -r /etc/terminfo $chrootDir/etc/terminfo
+  cp -r /etc/terminfo $(echo $chrootDir)/etc/terminfo
 
-  chroot $chrootDir rm /etc/mtab 2> /dev/null
+  chroot $(echo $chrootDir) rm /etc/mtab 2> /dev/null
 
-  chroot $chrootDir ln -s /proc/mounts /etc/mtab   
+  chroot $(echo $chrootDir) ln -s /proc/mounts /etc/mtab
 
-  chroot $chrootDir /bin/ash -l 
+  chroot $(echo $chrootDir) /bin/ash -l
 
-  
 
-   
+
+
 
 
 
@@ -134,7 +118,8 @@ read choice
 
 if [ $choice = 1 ]; then
    virtual_machine
-else 
+else $PWD)
+
     tollstream_chroot
 fi
 
