@@ -118,7 +118,7 @@ read choice
 
 if [ $choice = 1 ]; then
    virtual_machine
-else $PWD)
+else 
 
     tollstream_chroot
 fi
