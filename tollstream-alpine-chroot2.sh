@@ -6,7 +6,6 @@
 
 
 virtual_machine() {
-is specific task, I'd use make
 
 
 apt update && apt install wget, qemu
