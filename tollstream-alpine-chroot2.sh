@@ -63,7 +63,7 @@ tollstream_chroot() {
      
   fi   
   
-  if [ $architectur == 'i386' ];
+  if [ $architecture == 'i386' ];
   
      then
      
