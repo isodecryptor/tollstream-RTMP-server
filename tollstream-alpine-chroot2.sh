@@ -42,9 +42,13 @@ tollstream_chroot() {
 
   mkdir Tollstream
 
- 
+  architecture=$(uname -m)
+
+  if [ $architecture == 'unknown' ]; then 
 
   architecture=$(arch)
+
+  fi
 
   if [ $architecture == 'armv7l' ];
 
@@ -63,7 +67,8 @@ tollstream_chroot() {
   fi
 
   if [ $architecture == 'i386' ];
-     then
+
+      then
 
      architecture='x86'
 
