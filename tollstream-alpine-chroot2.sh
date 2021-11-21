@@ -36,21 +36,13 @@ qemu-system-x86_64 -m $memory_allocate -nic user -boot d -cdrom alpine-virt-3.14
 
 tollstream_chroot() {
 
-  cd $HOME
-  
-  if [ -d "Tollstream" ]; then
-  
-  cd Tollstream
-  
-  else
-  
+  cd /home
+
+  chrootDir='Tollstream'
+
   mkdir Tollstream
 
-  cd Tollstream
-  
-  fi
-  
-  chrootDir=$PWD
+ 
 
   architecture=$(arch)
 
@@ -61,49 +53,58 @@ tollstream_chroot() {
         architecture='armv7'
 
   fi
-  
-  if [ $architecture == 'i686' ];
-  
-     then
-     
-     architecture='x86'
-     
-  fi   
-  
-  if [ $architecture == 'i386' ];
-  
-     then
-     
-     architecture='x86'
-     
-  fi
-  
 
-  curl -LO http://mirror.clarkson.edu/alpine/v3.14/main/$architecture/apk-tools-static-2.12.7-r0.apk
+  if [ $architecture == 'i686' ];
+
+     then
+
+     architecture='x86'
+
+  fi
+
+  if [ $architecture == 'i386' ];
+     then
+
+     architecture='x86'
+
+  fi
+
+  curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r0.apk
 
   tar -xzf apk-tools-static-*.apk
 
-  ./sbin/apk.static -X http://mirror.clarkson.edu/alpine/latest-stable/main -U --allow-untrusted -p $chrootDir --initdb add alpine-base
+  ./sbin/apk.static -X  https://dl-cdn.alpinelinux.org/alpine/latest-stable/main -U --allow-untrusted -p Tollstream  --initdb add alpine-base
 
-  mount -o bind /dev $chrootDir/dev
+  mount -v -t proc none Tollstream/proc
 
-  mount -t proc none $chrootDir/proc
+  mount -v --rbind /sys Tollstream/sys
 
-  mount -o bind /sys $chrootDir/sys
+  mount --make-rprivate sys
 
-  mount -t devpts devpts $chrootDir/dev/pts
+  mount -v --rbind /dev Tollstream/dev
 
-  cp -L /etc/resolv.conf $chrootDir/etc/
+  mount --make-rprivate dev
 
-  mkdir -p $chrootDir/etc/apk
+  if [ -L /dev/shm ] && [ -d /run/shm ]; then
 
-  echo "http://mirror.clarkson.edu/alpine/v3.14/main" > $chrootDir/etc/apk/repositories
+        mkdir -p run/shm
 
-  chroot $chrootDir rm /etc/mtab 2> /dev/null
+        mount -v --bind /run/shm run/shm
 
-  chroot $chrootDir ln -s /proc/mounts /etc/mtab
+        mount --make-private run/shm
+  fi
 
-  chroot $chrootDir /bin/ash -l
+  cp -L /etc/resolv.conf Tollstream/etc/
+  
+  mkdir -p Tollstream/etc/apk
+
+  echo "https://mirror.clarkson.edu/alpine/v3.14/main" > Tollstream/etc/apk/repositories
+
+  chroot Tollstream rm /etc/mtab 2> /dev/null
+
+  chroot Tollstream ln -s /proc/mounts /etc/mtab
+
+  chroot Tollstream /bin/ash -l
 
 
 
