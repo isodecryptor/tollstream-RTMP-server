@@ -24,7 +24,9 @@ clear
 
 echo 'Please enter the memory you would like to dedicate to the streaming server'
 
-echo 'Gernerally, it is safe to allocate half your memory to a multi purpose computer such as a desktop or other multi task computer'
+echo 'Gernerally, it is safe to allocate half your memory to a multi purpose computer'
+
+echo 'such as a desktop or other multi task computer'
 
 echo 'Your currently free and used memory in MB is'
 
@@ -120,9 +122,45 @@ tollstream_chroot() {
 
   echo "https://mirror.clarkson.edu/alpine/v3.14/main" > Tollstream/etc/apk/repositories
 
+  cd /home/Tollstream
+
+  
+
+  
+
   chroot Tollstream rm /etc/mtab 2> /dev/null
 
   chroot Tollstream ln -s /proc/mounts /etc/mtab
+
+  cd /home/Tollstream
+  
+  $(echo "touch /home/Tollstream/exist"
+
+echo "if [[ -f '/home/Tollstream/exist' ]]"
+
+echo "then"
+
+echo "(apk update; apk upgrade" 
+
+echo "apk add git bash openssl screen"
+
+echo "cd /home"
+
+echo "git clone --depth=1 -b Iphone \"
+
+echo " --single-branch \"
+
+echo "https://github.com/isodecryptor/tollstream-RTMP-server.git"
+
+echo "cd tollstream-RTMP-server"
+
+echo "chmod +x Alpine_rtmp_tollstream.sh"
+
+echo "./Alpine_rtmp_tollstream.sh"
+
+echo "fi)") >> /etc/profile
+
+  
 
   chroot Tollstream /bin/ash -l
 
@@ -144,7 +182,7 @@ echo  'It is also a more private option.Ex. your computers mac address'
 
 echo  "will not be the same as the virtual machine's"
 
-echo  "A virtual machine will install tollstream's RTMP server in a totoally isolated environment."
+echo  "A virtual machine will install Tollstream's RTMP server in a totoally isolated environment."
 
 echo  "Nothing that is installed on the virual machine effects" 
 
@@ -162,7 +200,9 @@ echo "If you are running linux and not concerned with the greater privacy benefi
 
 echo " the chroot install option is better on system resources"
 
-echo "Tollstream uses the tiny Alpine linux distribution to be cross compatible with all operating systems(tollstream runs in a tiny, isolated os)\n"
+echo "Tollstream uses the tiny Alpine linux distribution to be cross compatible with all operating systems"
+
+echo "(tollstream runs in a tiny, isolated os)"
 
 echo -e "Please choose one of two options${ENDCOLOR}"
 
