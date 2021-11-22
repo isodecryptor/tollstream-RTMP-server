@@ -84,11 +84,11 @@ tollstream_chroot() {
 
   mount -v --rbind /sys Tollstream/sys
 
-  mount --make-rprivate sys
+  mount --make-rprivate Tollstream/sys
 
   mount -v --rbind /dev Tollstream/dev
 
-  mount --make-rprivate dev
+  mount --make-rprivate Tollstream/dev
 
   if [ -L /dev/shm ] && [ -d /run/shm ]; then
 
