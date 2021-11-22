@@ -4,6 +4,12 @@
 # The objective is to make a script that works with most if not all linux distributions
 # This should work with any os that has a bash shell and builtins such as chroot. 
 
+RED="\e[31m"
+LIGHTBLUE="\e[96m"
+PURPLE="\e[95m"
+ENDCOLOR="\e[0m"
+
+ENDCOLOR="\e[0m"
 
 virtual_machine() {
 
@@ -14,11 +20,13 @@ wget https://dl-cdn.alpinelinux.org/alpine/v3.14/releases/x86_64/alpine-virt-3.1
 
 tar -xvf alpine-minirootfs-*.tar
 
-echo 'Please enter the memory you would like to dedicate to the streaming server \n'
+clear
+
+echo 'Please enter the memory you would like to dedicate to the streaming server'
 
 echo 'Gernerally, it is safe to allocate half your memory to a multi purpose computer such as a desktop or other multi task computer'
 
-echo 'Your currently free and used memory in MB is \n'
+echo 'Your currently free and used memory in MB is'
 
 free -m
 
@@ -30,6 +38,7 @@ qemu-img create -f qcow2 alpine.qcow2 1G
 
 qemu-system-x86_64 -m $memory_allocate -nic user -boot d -cdrom alpine-virt-3.14.2-x86_64.iso
 
+clear
 
 }
 
@@ -46,15 +55,21 @@ tollstream_chroot() {
 
   if [ $architecture == 'unknown' ]; then 
 
-  architecture=$(arch)
+     architecture=$(arch)
 
   fi
 
-  if [ $architecture == 'armv7l' ];
+  if [ $(echo $architecture | grep armv7) == '' ]; then
 
-        then
+     architecture=$architecture
 
-        architecture='armv7'
+     echo $architecture
+
+  else
+
+     architecture='armv7'
+     
+     echo $architecture
 
   fi
 
@@ -84,11 +99,11 @@ tollstream_chroot() {
 
   mount -v --rbind /sys Tollstream/sys
 
-  mount --make-rprivate Tollstream/sys
+  mount --make-rprivate /sys
 
   mount -v --rbind /dev Tollstream/dev
 
-  mount --make-rprivate Tollstream/dev
+  mount --make-rprivate /dev
 
   if [ -L /dev/shm ] && [ -d /run/shm ]; then
 
@@ -119,29 +134,41 @@ tollstream_chroot() {
 
 }
 
-echo 'Tollstream has two options for installing its open source server \n'
+clear
 
-echo 'Virtual machines are sometimes the only option you may have. It is also a more private option.Ex. your computers mac address will not be the same\n '
+echo -e "${LIGHTBLUE}Tollstream has two options for installing its open source server"
 
-echo "as the virtual machine's\n"
+echo 'Virtual machines are sometimes the only option you may have.'
 
-echo "A virtual machine will install tollstream's RTMP server in a totoally isolated environment. Nothing that is installed on the virual machine effects\n"
+echo  'It is also a more private option.Ex. your computers mac address' 
 
-echo "the installation of the parent os\n"
+echo  "will not be the same as the virtual machine's"
 
-echo "A virtual machine is a great option for more privacy and security, however it does take more system resources to run than a chroot install\n"
+echo  "A virtual machine will install tollstream's RTMP server in a totoally isolated environment."
 
-echo " The other option is a chroot install of tollstream's packages. It is isolated from your parent os as well but does use the same drivers as your parent os\n"
+echo  "Nothing that is installed on the virual machine effects" 
 
-echo "If you are running linux and not concerned with the greater privacy benefits of using a virtual machine, the chroot install option is better on system resources\n"
+echo "the installation of the parent os"
+
+echo "A virtual machine is a great option for more privacy and security,"
+
+echo "however it does take more system resources to run than a chroot install"
+
+echo " The other option is a chroot install of tollstream's packages."
+
+echo "It is isolated from your parent os as well but does use the same drivers as your parent os"
+
+echo "If you are running linux and not concerned with the greater privacy benefits of using a virtual machine,"
+
+echo " the chroot install option is better on system resources"
 
 echo "Tollstream uses the tiny Alpine linux distribution to be cross compatible with all operating systems(tollstream runs in a tiny, isolated os)\n"
 
-echo "Please choose one of two options\n"
+echo -e "Please choose one of two options${ENDCOLOR}"
 
-echo " 1) Virtual machine\n"
+echo -e "${RED} 1) Virtual machine"
 
-echo " 2) Chroot\n"
+echo -e " 2) Chroot${ENDCOLOR}"
 
 read choice
 
