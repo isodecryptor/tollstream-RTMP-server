@@ -143,7 +143,7 @@ printf "apk add git bash openssl screen;\n"
 
 printf "cd /home;\n"
 
-printf "git clone --depth=1 -b Iphone \\n"
+printf "git clone --depth=1 -b test-ubuntu2 \\n"
 
 printf " --single-branch \\n"
 
