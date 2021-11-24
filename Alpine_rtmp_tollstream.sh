@@ -114,7 +114,7 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 
       else
 
-        architecture='armv'
+        architecture='arm'
 
 
        fi
