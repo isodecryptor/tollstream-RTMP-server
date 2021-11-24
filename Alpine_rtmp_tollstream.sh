@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
@@ -64,7 +63,7 @@ cat /dev/location > /dev/NULL &
 #repositories with apk add netcat-openbsd as the default one in ISH does not work
 #for file transfers and will hang your script. Installing netcat-openbsd works for
 #file transfers and is the solution to this bug. 
-apk add nginx nginx-mod-rtmp jq bash openssl curl netcat-openbsd ffmpeg
+apk add nginx nginx-mod-rtmp jq bash openssl curl netcat-openbsd
 if [[ -f "/run/nginx" ]]; then
    echo "/run/nginx was created,already"
 else
@@ -100,8 +99,44 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
       echo "This file exists on your filesystem."
    else
       reset
-      wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
-      unzip /home/tollstream-RTMP-server/ngrok-stable-linux-386.zip
+     
+       architecture=$(uname -m)
+      
+       if [ $architecture == 'unknown' ]; then
+         architecture=$(arch)
+       fi
+
+     if [ $(echo $architecture | grep armv7) =='' ]; then
+
+        architecture=$architecture
+
+        echo $architecture
+
+      else
+
+        architecture='armv'
+
+
+       fi
+
+     if [ $architecture == 'i686' ];
+
+        then
+
+        architecture='386'
+
+      fi
+
+     if [ $architecture == 'i386' ];
+
+       then
+
+        architecture='386'
+
+      fi
+
+      wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$architecture.zip
+      unzip /home/tollstream-RTMP-server/ngrok-stable-linux-$architecture.zip
    fi
    str=$(cat /root/.ngrok2/ngrok.yml)
       if [ $( echo $str | wc -c ) -lt 63 ] && [ $( echo $str | wc -c ) -gt 58 ]; then
