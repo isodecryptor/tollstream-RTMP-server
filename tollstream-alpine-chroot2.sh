@@ -89,13 +89,23 @@ tollstream_chroot() {
 
      architecture='x86'
 
+  fi 
+  
+  if [ $architecture == 'aarch64' ]
+  
+     then
+     
+     curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r3.apk   
+  
+  else
+  
+      curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r0.apk
+     
   fi
-
-  curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r0.apk
 
   tar -xzf apk-tools-static-*.apk
 
-  ./sbin/apk.static -X  https://dl-cdn.alpinelinux.org/alpine/latest-stable/main -U --allow-untrusted -p Tollstream  --initdb add alpine-base
+  ./sbin/apk.static -X  http://dl-cdn.alpinelinux.org/alpine/latest-stable/main -U --allow-untrusted -p Tollstream  --initdb add alpine-base
 
   mount -v -t proc none Tollstream/proc
 
