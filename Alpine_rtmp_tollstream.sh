@@ -10,8 +10,8 @@
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
-   echo "Welcome Back! 😀😀😀🥳🤗"
-   echo "Press any key to continue"
+   echo "                    Welcome Back! 😀😀😀🥳🤗"
+   echo "                  Press any key to continue"
    pkill ngrok
    read
 else
@@ -140,6 +140,15 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
        then
        
        architecture='arm64'
+      fi
+      
+     if [ $architecture == 'x86_64' ];
+     
+       then
+       
+       architecture='amd64'
+       
+      fi
 
       wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$architecture.zip
       unzip /home/tollstream-RTMP-server/ngrok-stable-linux-$architecture.zip
