@@ -134,6 +134,12 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
         architecture='386'
 
       fi
+      
+     if [ $architecture == 'aarch64' ];
+     
+       then
+       
+       architecture='arm64'
 
       wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$architecture.zip
       unzip /home/tollstream-RTMP-server/ngrok-stable-linux-$architecture.zip
