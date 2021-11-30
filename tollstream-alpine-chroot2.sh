@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#License=GNU 
 # working Attempt to install an alpine chroot for a central kernel for tollstream.com. 
 # The objective is to make a script that works with most if not all linux distributions
 # This should work with any os that has a bash shell and builtins such as chroot. 
