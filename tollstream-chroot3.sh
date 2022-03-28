@@ -149,11 +149,11 @@ architecture=$(uname -m)
 
 
 
-echo $(printf "if [[ ! -f '/home/${LOGNAME}/Tollstream/exist' ]];\n"
+echo $(printf "if [[ ! -f '/home/${SUDO_USER:-$USER}/Tollstream/exist' ]];\n"
 
 printf "then\n"
 
-printf "touch /home/${LOGNAME}/Tollstream/exist;\n"
+printf "touch /home/${SUDO_USER:-$USER}/Tollstream/exist;\n"
 
 printf "apk update; apk upgrade;\n"
 
