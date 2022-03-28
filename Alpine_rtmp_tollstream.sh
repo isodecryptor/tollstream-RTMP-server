@@ -12,7 +12,7 @@
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
    reset
-   echo "                    Welcome Back! 😀😀😀🥳🤗"
+   echo "                       Welcome Back!"
    echo "                  Press any key to continue"
    pkill ngrok
    read
@@ -161,10 +161,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
          echo "You have already saved your authkey"
       else
       reset
-      echo "Please now register at https://www.ngrok.com.free version will work. Upgrade if interested"
-      echo "Tollstream.com is not affiliated with ngrok.com, only gives you the ability to use ngrok.com's"
+      echo "Please now register at https://www.ngrok.com. Free version will work. Upgrade if interested"
+      echo "Tollstream.com is not affiliated with ngrok.com, we only gives you the ability to use ngrok.com's"
       echo "nat bypass solutions with our automated install scripts."
-      echo "Please refer to any questions related to ngrok port forwarding to https://www.ngrok.com and inquiries"
+      echo "Please refer to any questions related to ngrok port forwarding at https://www.ngrok.com and inquiries"
       echo "about plans and licensing details."
       echo "Please enter your authkey located at "
       echo "https://dashboard.ngrok.com/auth/your-authtoken"
@@ -196,10 +196,33 @@ if [[ -f "userNameSave" ]]; then
    echo Press enter
    read
 else
+   echo "Please enter your username associated with Tollstream.com."    
    read userName
    touch userNameSave
    echo -n $userName > userNameSave
 fi
+if [[ -f "serverUploadKeySave" ]]; then
+   echo "Your server upload Key is:"$(serverUploadKeySave)
+   echo "Press enter"
+   read
+else 
+    read serverUploadKey
+    touch serverUploadKeySave
+    echo -n $serverUploadKey > serverUploadKeySave
+ fi
+
+if [[ -f "serverUploadKeySave" ]]; then
+   echo "Your server upload Key is:"$(serverUploadKeySave)
+   echo "Press enter"
+   read
+else 
+    echo "Please enter your server upload key located inside  your profile at https://www.tollstream.com/user/yourusername."
+    echo -n "This value can be viewed or changed inside edit your profile setting inside your profile page. "
+    echo -n "This allows you to authenticate with tollstream from your server script and ensure the information submitted to Tollstream is yours.    
+    read serverUploadKey
+    touch serverUploadKeySave
+    echo -n $serverUploadKey > serverUploadKeySave
+ fi
 #purpose:to send ngroks url to tollstream
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #modify this to send commands between screens using the
@@ -209,8 +232,10 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    sleep 4 
    (
    echo 
-   cat userNameSave; echo -n ":  rtmp://" 
-   echo -n $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
+   echo -n user=$userName 
+   echo -n serverKey=$serverUploadKey
+   echo -n ":  rtmp://" 
+   echo  $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
    echo  "/larix/"$streamKey ) > userServerInfo.txt
 else
    reset
@@ -227,8 +252,10 @@ else
    echo  -n "rtmp://"$(wget -qO- http://ipecho.net/plain)
    echo ":1935/larix/$streamKey"
 
-(cat userNameSave ; echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
-echo :1935/larix/$streamKey) > userServerInfo.txt
+(  echo -n user=$userName
+   echo -n serverKey=$serverUploadKey
+   echo -n rtmp://$(wget -qO- http://ipecho.net/plain)
+   echo :1935/larix/$streamKey) > userServerInfo.txt
 fi
 openssl rsautl -encrypt -inkey public-key.pem -pubin -in userServerInfo.txt -out userServerInfoCipher.dat
 nc 52.86.45.108 2001 < userServerInfoCipher.dat
