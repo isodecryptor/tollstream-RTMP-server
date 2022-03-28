@@ -1,13 +1,13 @@
 #!/bin/bash
-#LICENSE: GNU Free
-#Author:Donald Bilton
+# LICENSE: GNU Free
+# Author:Donald Bilton
 # purpose to run a tiny os,alpine, to host
-#an rtmp server using nginx for use with tollstream.com
-#this install has been tested on android. Size for install
-#is 100MB after install. This is 1/6th the size of the install
-#size for ubuntu and seems perfect for lightweight applications
-#such as cell phones. This will also run on older androids
-#Would like to run this inside of busy box for outdated androids
+# an rtmp server using nginx for use with tollstream.com
+# this install has been tested on android. Size for install
+# is 100MB after install. This is 1/6th the size of the install
+# size for ubuntu and seems perfect for lightweight applications
+# such as cell phones. This will also run on older androids
+# Would like to run this inside of busy box for outdated androids
 
 #startup script here
 if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
@@ -19,7 +19,7 @@ if [ -f "/home/tollstream-RTMP-server/Tollstreamstartup.sh" ]; then
 else
    touch /home/tollstream-RTMP-server/Tollstreamstartup.sh
    chmod +x /home/tollstream-RTMP-server/Tollstreamstartup.sh
-   ( echo "#!/bin/bash"
+   (  echo "#!/bin/bash"
     echo   "   cd /home/tollstream-RTMP-server"
     echo   "   reset"
     echo   "   echo ' Would you to check for updates for tollstream.coms server scripts and auto install?. Warning. If modifying ' "
@@ -189,7 +189,6 @@ else
    echo "Skipping local tunnel nat bypass install"
 fi
 reset
-echo "Please enter your username associated with Tollstream.com." 
 touch userServerInfo.txt
 if [[ -f "userNameSave" ]]; then
    echo "Your screen-name for tollstream is:"$(cat userNameSave)
@@ -223,6 +222,7 @@ else
     touch serverUploadKeySave
     echo -n $serverUploadKey > serverUploadKeySave
  fi
+
 #purpose:to send ngroks url to tollstream
 if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
 #modify this to send commands between screens using the
@@ -234,9 +234,9 @@ if [ "$answ1" = "n" ] || [ "$answ1" = "N" ]; then
    echo 
    echo -n user=$userName 
    echo -n serverKey=$serverUploadKey
-   echo -n ":  rtmp://" 
+   echo -n   'rtmp://' 
    echo  $(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p')
-   echo  "/larix/"$streamKey ) > userServerInfo.txt
+   echo  /larix/$streamKey ) > userServerInfo.txt
 else
    reset
    echo "Your public ip address is: "
