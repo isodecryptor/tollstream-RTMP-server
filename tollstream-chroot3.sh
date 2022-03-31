@@ -103,15 +103,15 @@ architecture=$(uname -m)
 
      then
 
-     curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r3.apk   
-
+     curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r3.apk  
+     tar -xzf apk-tools-static-2.12.7-r3.apk
   else
 
       curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r0.apk
-     
+      tar -xzf apk-tools-static-2.12.7-r0.apk     
   fi
 
-  tar -xzf apk-tools-static-*.apk
+  
 
   ./sbin/apk.static -X  http://dl-cdn.alpinelinux.org/alpine/latest-stable/main -U --allow-untrusted -p Tollstream  --initdb add alpine-base
 
