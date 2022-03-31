@@ -5,8 +5,8 @@ touch userServerInfoCipher.dat
 nc_listen(){
 #add authentication layer to check if username and server upload key matches the database on tollstream.com
 
-sudo nc 2001 -w 1 -l  >  userServerInfoCipher.dat
-sudo openssl rsautl -decrypt -in userServerInfoCipher.dat -out netcatfile.txt -inkey /home/ubuntu/private-key->
+nc 2001 -w 1 -l  >  userServerInfoCipher.dat
+openssl rsautl -decrypt -in userServerInfoCipher.dat -out netcatfile.txt -inkey /home/ubuntu/private-key->
 source netcatfile.txt
 serverUploadKey=$(wp user meta get $userName upload_Key --path=/var/www/tollstream.com/)
 if [[ "$serverUploadKey" = "$uploadKey" ]]; then
