@@ -107,8 +107,8 @@ architecture=$(uname -m)
      tar -xzf apk-tools-static-2.12.7-r3.apk
   else
 
-      curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r0.apk
-      tar -xzf apk-tools-static-2.12.7-r0.apk     
+      curl -LO http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/$architecture/apk-tools-static-2.12.7-r3.apk
+      tar -xzf apk-tools-static-2.12.7-r3.apk     
   fi
 
   
