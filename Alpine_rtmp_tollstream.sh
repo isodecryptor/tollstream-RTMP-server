@@ -200,15 +200,6 @@ else
    touch userNameSave
    echo -n $userName > userNameSave
 fi
-if [[ -f "serverUploadKeySave" ]]; then
-   echo "Your server upload Key is:"$(serverUploadKeySave)
-   echo "Press enter"
-   read
-else 
-    read serverUploadKey
-    touch serverUploadKeySave
-    echo -n $serverUploadKey > serverUploadKeySave
- fi
 
 if [[ -f "serverUploadKeySave" ]]; then
    echo "Your server upload Key is:"$(serverUploadKeySave)
